@@ -1,0 +1,308 @@
+/* ===========================
+   GLOBAL RESET & BASE STYLES
+=========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  background: #000; /* fallback for solar system background */
+  overflow-x: hidden;
+}
+
+/* ===========================
+   SOLAR SYSTEM CANVAS
+=========================== */
+.solar-canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+/* ===========================
+   HEADER
+=========================== */
+header {
+  backdrop-filter: blur(10px);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #4b5563; /* gray-700 */
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #2563eb; /* blue-600 */
+}
+
+.mobile-link {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: #1f2937; /* gray-800 */
+  transition: color 0.3s;
+}
+
+.mobile-link:hover {
+  color: #2563eb;
+}
+
+/* ===========================
+   HERO SECTION
+=========================== */
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #bfdbfe, #fff); /* light magical gradient */
+}
+
+#hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1e293b; /* gray-800 */
+  margin-bottom: 1rem;
+}
+
+#hero p {
+  font-size: 1.5rem;
+  color: #475569; /* gray-600 */
+  margin-bottom: 2rem;
+}
+
+#hero a {
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+#hero a:hover {
+  background-color: #1d4ed8; /* blue-700 */
+}
+
+/* ===========================
+   ABOUT SECTION
+=========================== */
+#about {
+  color: #374151; /* gray-700 */
+}
+
+#about img {
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+#about p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+/* ===========================
+   SKILLS SECTION
+=========================== */
+#skills .grid div {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s;
+}
+
+#skills .grid div:hover {
+  box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+/* ===========================
+   PROJECTS SECTION
+=========================== */
+#projects .grid div {
+  background-color: #f9fafb; /* gray-50 */
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+#projects .grid div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+#projects img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+
+#projects a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#projects a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   CONTACT SECTION
+=========================== */
+#contact input,
+#contact textarea {
+  padding: 1rem;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.75rem;
+  outline: none;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+#contact button {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#contact button:hover {
+  background-color: #1d4ed8;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+footer {
+  background-color: white;
+  text-align: center;
+  padding: 1.5rem;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  color: #6b7280; /* gray-500 */
+}
+
+/* ===========================
+   SOCIAL ICONS
+=========================== */
+.icon {
+  width: 2rem;
+  height: 2rem;
+  color: #2563eb;
+  transition: all 0.3s;
+}
+
+.icon:hover {
+  color: #1d4ed8;
+  transform: scale(1.2);
+}
+
+/* ===========================
+   DARK MODE
+=========================== */
+:root {
+  --bg-light: #f9fafb;
+  --bg-dark: #111827;
+  --text-light: #111827;
+  --text-dark: #f9fafb;
+}
+
+.dark body {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.dark header,
+.dark #skills .grid div,
+.dark #projects .grid div,
+.dark #contact input,
+.dark #contact textarea,
+.dark #contact button,
+.dark footer {
+  background-color: #1f2937; /* gray-900 */
+  color: var(--text-dark);
+}
+
+.dark #hero {
+  background: linear-gradient(to bottom, #1e3a8a, #111827);
+}
+
+.dark #hero h1,
+.dark #hero p,
+.dark #hero a {
+  color: #f9fafb;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 768px) {
+  #skills .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #projects .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Basic theme variables (put in index.css or App.css) */
+:root {
+  --bg: #0b0f1a;
+  --text: #ffffff;
+}
+
+:root[data-theme="light"] {
+  --bg: #f7f9fc;
+  --text: #0b0f1a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.cs-img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 15px rgba(0,200,255,0.4);
+}
+
+.tech-badge {
+  background: rgba(0,200,255,0.2);
+  border: 1px solid rgba(0,200,255,0.5);
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 500;
+  box-shadow: 0 0 10px #00cfff;
+}

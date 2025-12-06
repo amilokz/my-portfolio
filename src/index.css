@@ -1,0 +1,26 @@
+/* Tailwind base, components, utilities MUST be first */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navigation links */
+
+
+.mobile-link {
+  @apply block mt-3 text-gray-800 dark:text-gray-200 text-lg;
+}
+
+/* Global body styles */
+body {
+  @apply bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans;
+}
+
+/* Buttons hover effects */
+button {
+  @apply transition-colors duration-300;
+}
