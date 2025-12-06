@@ -1,26 +1,82 @@
-/* Tailwind base, components, utilities MUST be first */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Navigation links */
-
-
-.mobile-link {
-  @apply block mt-3 text-gray-800 dark:text-gray-200 text-lg;
-}
-
-/* Global body styles */
+/* Body global styles */
 body {
-  @apply bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans;
+  background-color: #f9fafb; /* light background */
+  color: #1f2937; /* dark text */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Buttons hover effects */
+/* Navigation links */
+.nav-link {
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #0d6efd; /* Bootstrap primary color */
+}
+
+/* Active section link */
+.nav-link.active {
+  color: #0d6efd;
+}
+
+/* Buttons */
 button {
-  @apply transition-colors duration-300;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Button primary */
+.btn-primary {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* Mobile nav links */
+.mobile-link {
+  display: block;
+  margin-top: 0.75rem; /* mt-3 */
+  font-size: 1.125rem; /* text-lg */
+  color: #1f2937;
+}
+
+/* Dark mode */
+body.dark {
+  background-color: #111827;
+  color: #e5e7eb;
+}
+
+body.dark .nav-link {
+  color: #e5e7eb;
+}
+
+body.dark .nav-link:hover,
+body.dark .nav-link.active {
+  color: #0d6efd;
+}
+
+body.dark .btn-primary {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+body.dark .btn-primary:hover {
+  background-color: #0b5ed7;
 }
