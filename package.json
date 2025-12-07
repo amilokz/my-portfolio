@@ -3,9 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-
   "homepage": "https://amilokz.github.io/personal_portfolio",
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,7 +12,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
@@ -29,7 +26,6 @@
     "react-simple-typewriter": "^5.0.1",
     "three": "^0.181.2"
   },
-
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/react": "^19.2.5",

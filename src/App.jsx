@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 // Components
 import SolarSystem from "./components/SolarSystem";
@@ -17,8 +17,9 @@ import Blog from "./components/Blog";
 import FunFacts from "./components/FunFacts";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import DarkModeToggle from "./components/DarkModeToggle"; // or ThemeToggle
+import DarkModeToggle from "./components/DarkModeToggle";
 import SocialLinks from "./components/SocialLinks";
+
 
 // Case Study Pages
 import CaseStudy1 from "./pages/CaseStudy1";
@@ -29,18 +30,17 @@ export default function App() {
   return (
     <Router>
       <div className="relative">
-        {/* Background */}
+        {/* Solar System background */}
         <div className="fixed inset-0 -z-10">
           <SolarSystem />
         </div>
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm -z-5"></div>
 
-        {/* Header + Dark Mode Toggle */}
+        {/* Header + Dark Mode */}
         <Header />
         <DarkModeToggle />
 
         <Routes>
-          {/* Home Page */}
           <Route
             path="/"
             element={
@@ -63,7 +63,7 @@ export default function App() {
             }
           />
 
-          {/* Case Study Pages */}
+          {/* Case Studies */}
           <Route path="/casestudy/1" element={<CaseStudy1 />} />
           <Route path="/casestudy/2" element={<CaseStudy2 />} />
           <Route path="/casestudy/3" element={<CaseStudy3 />} />
