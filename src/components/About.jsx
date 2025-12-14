@@ -48,7 +48,7 @@ export default function About() {
                 {/* Left Image */}
                 <div className="col-md-5 mb-4 mb-md-0 text-center">
                   <motion.img
-                    src="/ali (2).jpeg" // your local image path
+                    src="/ali2.jpeg" // your local image path
                     alt="Komil Hassan"
                     className="img-fluid rounded-4 shadow"
                     style={{
