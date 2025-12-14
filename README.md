@@ -1,6 +1,6 @@
 🌐 My Portfolio – Komil Hassan
 
-![Komil Hassan](assets/ali (2).jpeg)
+![Komil Hassan](assets/ali2.jpeg)
 
 Full Stack Web Developer
 
