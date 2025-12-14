@@ -1,6 +1,7 @@
 🌐 My Portfolio – Komil Hassan
 
-![Komil Hassan](public/ali2.jpeg)
+![Komil Hassan](/ali2.jpeg)
+
 
 
 
