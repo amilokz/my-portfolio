@@ -1,7 +1,7 @@
 🌐 My Portfolio – Komil Hassan
 
 
-![Komil Hassan](./ali2.jpeg)
+![Komil Hassan](https://raw.githubusercontent.com/amilokz/my-portfolio/main/public/ali2.jpeg)
 
 
 
@@ -107,7 +107,6 @@ Full-stack e-commerce website with cart, product listing, and REST API backend.
 React, MongoDB
 Task creation, editing, status updates—optimized UI for productivity.
 
-(You can add GitHub repo links to each later if you want.)
 
 📞 Contact
 
