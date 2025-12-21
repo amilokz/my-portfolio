@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        // SPA fallback for GitHub Pages
+        var segmentCount = 0;
+        var l = window.location;
+        var redirectTo = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + 
+                        '/my-portfolio/#' + l.pathname.split('/').slice(2).join('/') + 
+                        l.search + l.hash;
+        window.location.replace(redirectTo);
+    </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/my-portfolio/" />
+    </noscript>
+</head>
+<body>
+    <p>Redirecting to portfolio...</p>
+</body>
+</html>
