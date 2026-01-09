@@ -3,16 +3,17 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://amilokz.github.io/personal-portfolio",
+  "homepage": "https://amilokz.github.io/my-portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && echo '' > dist/.nojekyll",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@types/three": "^0.182.0",
     "bootstrap": "^5.3.8",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.555.0",

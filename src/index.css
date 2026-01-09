@@ -80,3 +80,24 @@ body.dark .btn-primary {
 body.dark .btn-primary:hover {
   background-color: #0b5ed7;
 }
+
+/* Add smooth transitions for navbar */
+.navbar {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fix body padding for navbar */
+body {
+  padding-top: 0 !important;
+}
+
+/* Ensure hero content is properly spaced */
+.hero-content-wrapper {
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content-wrapper {
+    margin-top: 1rem;
+  }
+}

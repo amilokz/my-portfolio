@@ -1,0 +1,117 @@
+/* Solar System Override Styles - Responsive */
+
+/* Base styles */
+:root {
+  --solar-bg-z-index: -100;
+  --content-z-index: 1;
+  --overlay-z-index: -99;
+}
+
+/* Solar system container */
+.solar-system-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: var(--solar-bg-z-index) !important;
+  pointer-events: none !important;
+}
+
+/* Content readability enhancements */
+.solar-content h1,
+.solar-content h2,
+.solar-content h3,
+.solar-content h4,
+.solar-content h5,
+.solar-content h6,
+.solar-content p {
+  position: relative;
+  z-index: 2;
+}
+
+/* Button visibility */
+.btn {
+  position: relative !important;
+  z-index: 10 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Form elements visibility */
+input, textarea, select {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(5px);
+}
+
+.dark input, .dark textarea, .dark select {
+  background: rgba(30, 41, 59, 0.9) !important;
+}
+
+/* Card and container visibility */
+.card, .container, .row {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .solar-content h1 {
+    font-size: 2rem !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .solar-content h2 {
+    font-size: 1.75rem !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8) !important;
+  }
+  
+  .solar-content p {
+    font-size: 1rem !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 1rem !important;
+  }
+}
+
+/* Dark mode enhancements */
+.dark .solar-content h1,
+.dark .solar-content h2,
+.dark .solar-content h3 {
+  color: #ffffff !important;
+}
+
+.dark .solar-content p {
+  color: #e5e7eb !important;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .solar-system-container * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Performance optimizations for low-end devices */
+@media (prefers-reduced-data: reduce) {
+  .solar-system-container {
+    opacity: 0.7;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .solar-content a,
+  .solar-content button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 24px !important;
+  }
+}

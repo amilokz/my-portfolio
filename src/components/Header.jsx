@@ -127,10 +127,10 @@ export default function Header() {
             </Nav.Link>
 
             {/* Social Icons */}
-            <Nav.Link href="https://github.com/komilhassan" target="_blank">
+            <Nav.Link href="https://github.com/amilokz" target="_blank">
               <i className="bi bi-github fs-5"></i>
             </Nav.Link>
-            <Nav.Link href="https://linkedin.com/in/komilhassan" target="_blank">
+            <Nav.Link href="www.linkedin.com/in/komil-hassan-a97b66282" target="_blank">
               <i className="bi bi-linkedin fs-5"></i>
             </Nav.Link>
             <Nav.Link href="https://twitter.com/komilhassan" target="_blank">
