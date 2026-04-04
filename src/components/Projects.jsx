@@ -29,8 +29,8 @@ export default function Projects() {
         "Developed a fully responsive company website using React and Tailwind CSS. Features smooth animations, interactive sections, and optimized performance.",
       image: "companypro.jpeg",
       stack: ["React", "Tailwind CSS", "JavaScript"],
-      demo: "#",
-      github: "#",
+      demo: "amilokz.github.io/company-project/",
+      github: "https://github.com/amilokz/company-project.git",
       caseStudy: "/casestudy/1",
     },
   ];

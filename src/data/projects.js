@@ -9,7 +9,7 @@ const projects = [
     image: "serp.jpeg",
     stack: ["Laravel", "PHP", "MySQL", "Bootstrap", "JavaScript"],
     demo: "https://serpproject.42web.io/?i=1",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const projects = [
     image: "ecommerce_web.jpeg",
     stack: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
     demo: "https://localemarket.42web.io/website",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const projects = [
     image: "echoworld.jpeg",
     stack: ["React", "Tailwind CSS"],
     demo: "https://echo-world-alpha.vercel.app/",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz",
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const projects = [
     image: "flexipdf.jpeg",
     stack: ["PHP", "JavaScript", "HTML", "CSS"],
     demo: "https://flexipdf.vercel.app/",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz",
   },
   {
     id: 5,
@@ -57,19 +57,19 @@ const projects = [
     image: "reactfullstackapp.jpeg",
     stack: ["React", "Node.js", "Express", "MongoDB"],
     demo: "https://reacthub-omega.vercel.app/",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz",
   },
   {
     id: 6,
-    title: "Smart-Serice-Booking",
+    title: "Smart-Service-Booking",
     category: "HTML/CSS/javascript/bootstrap",
     shortDesc: "A clean and clean layout using HTML, CSS, and Bootstrap.",
     description:
       "Smart Service Booking is a web-based system that enables users to book services online in a simple and efficient way. It helps service providers manage bookings, reduce manual work, and improve customer experience.",
     image: "smartservicebooking.png",
-    stack: ["HTML", "CSS", "Bootstrap" ,"javascript"],
+    stack: ["HTML", "CSS", "Bootstrap", "JavaScript"],
     demo: "https://smart-service-booking.vercel.app/",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz/smart-service-booking",
   },
   {
     id: 7,
@@ -81,7 +81,7 @@ const projects = [
     image: "miniapps.png",
     stack: ["Python", "Flask", "API"],
     demo: "https://mini-apps-liart.vercel.app/",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz/mini-apps.git",
   },
   {
     id: 8,
@@ -93,9 +93,9 @@ const projects = [
     image: "schoolproject.jpeg",
     stack: ["HTML", "CSS", "JavaScript"],
     demo: "amilokz.github.io/my-school-project/",
-    github: "www.linkedin.com/in/komil-hassan-a97b66282",
+    github: "https://github.com/amilokz/my-school-project.git",
   },
-  
+
 ];
 
 export default projects;
