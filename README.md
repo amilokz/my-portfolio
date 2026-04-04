@@ -1,4 +1,4 @@
-# 🚀 Amilokz | Full-Stack Developer Portfolio
+# 🚀 Komil Hassan | Full-Stack Developer Portfolio
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r169-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
