@@ -1,576 +1,428 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import aliImage from "../assets/ali2-fixed.jpeg";
+import { motion, useInView } from "framer-motion";
 import { 
-  Code, 
-  Database, 
-  Globe, 
-  Cpu, 
-  Layers, 
-  Zap,
-  Download,
-  Sparkles,
+  User, 
+  Download, 
+  Briefcase, 
+  Heart, 
+  Clock, 
+  MapPin, 
+  Calendar,
   Award,
-  Rocket
+  Code2,
+  Coffee,
+  BookOpen,
+  TrendingUp,
+  CheckCircle,
+  ArrowRight,
+  Trophy,
+  GraduationCap,
+  Rocket,
+  Zap,
+  Star,
+  GitBranch,
+  Target
 } from "lucide-react";
 
 export default function About() {
-  const [hoveredTech, setHoveredTech] = useState(null);
-  const [activeTab, setActiveTab] = useState("about");
+  const [hoveredStat, setHoveredStat] = useState(null);
+  const [activeTimeline, setActiveTimeline] = useState(0);
 
-  const technologies = [
-    { name: "React", icon: <Code size={20} />, color: "#61DAFB" },
-    { name: "Laravel", icon: <Cpu size={20} />, color: "#FF2D20" },
-    { name: "PHP", icon: <Globe size={20} />, color: "#777BB4" },
-    { name: "JavaScript", icon: <Zap size={20} />, color: "#F7DF1E" },
-    { name: "MySQL", icon: <Database size={20} />, color: "#4479A1" },
-    { name: "Three.js", icon: <Layers size={20} />, color: "#8B5CF6" },
+  // Stats Data
+  const stats = [
+    { value: "20+", label: "Projects Completed", icon: <Briefcase size={22} />, color: "#00cfff", delay: 0 },
+    { value: "3+", label: "Years Experience", icon: <Clock size={22} />, color: "#8b5cf6", delay: 0.1 },
+    { value: "100%", label: "Client Satisfaction", icon: <Heart size={22} />, color: "#f59e0b", delay: 0.2 },
   ];
 
+  // Journey Timeline
+  const timeline = [
+    { year: "2022", title: "Started Web Development", description: "Began learning HTML, CSS, JS", icon: <Code2 size={18} />, color: "#61DAFB" },
+    { year: "2023", title: "First Professional Projects", description: "Delivered real-world applications", icon: <Rocket size={18} />, color: "#00cfff" },
+    { year: "2024", title: "Full Stack Expert", description: "Mastered React, Laravel, Three.js", icon: <Target size={18} />, color: "#8b5cf6" },
+    { year: "2025", title: "Continuous Growth", description: "Building amazing digital experiences", icon: <TrendingUp size={18} />, color: "#10b981" },
+  ];
+
+  // Achievements
   const achievements = [
-    { title: "5+ Projects", desc: "Successfully delivered", icon: <Rocket size={16} /> },
-    { title: "Full Stack", desc: "End-to-end development", icon: <Layers size={16} /> },
-    { title: "Modern Tech", desc: "Latest frameworks & tools", icon: <Sparkles size={16} /> },
+    { title: "React Certification", icon: <Code2 size={20} />, color: "#61DAFB" },
+    { title: "Laravel Certification", icon: <GitBranch size={20} />, color: "#FF2D20" },
+    { title: "PHP & JavaScript Awards", icon: <Trophy size={20} />, color: "#f59e0b" },
+    { title: "College Degree", icon: <GraduationCap size={20} />, color: "#00cfff" },
+  ];
+
+  // Fun Facts
+  const funFacts = [
+    { icon: <Code2 size={20} />, label: "Code Lover", value: "∞" },
+    { icon: <Coffee size={20} />, label: "Coffee/Week", value: "20+" },
+    { icon: <Zap size={20} />, label: "All Nighters", value: "50+" },
+    { icon: <Star size={20} />, label: "GitHub Stars", value: "100+" },
+  ];
+
+  // Qualities
+  const qualities = [
+    { title: "Clean Code", desc: "Maintainable & scalable", icon: <CheckCircle size={18} /> },
+    { title: "Fast Delivery", desc: "On-time completion", icon: <Clock size={18} /> },
+    { title: "Creative Design", desc: "Modern & unique", icon: <Coffee size={18} /> },
   ];
 
   return (
     <section
       id="about"
-      className="py-5 position-relative"
-      style={{ 
-        background: "transparent", 
-        zIndex: 1,
+      style={{
         minHeight: "100vh",
-        display: "flex",
-        alignItems: "center"
+        padding: "100px 24px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="container">
-        {/* Section Header with Glitch Effect */}
-        <motion.div
-          className="text-center mb-5"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, type: "spring" }}
-        >
-          <h2 className="display-5 fw-bold mb-3" style={{ 
-            color: "#ffffff",
-            textShadow: `
-              0 0 20px rgba(0, 204, 255, 0.8),
-              0 0 40px rgba(0, 204, 255, 0.4),
-              0 0 60px rgba(0, 204, 255, 0.2)
-            `,
-            background: "linear-gradient(135deg, #00cfff 0%, #8b5cf6 50%, #ec4899 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            position: "relative",
-            display: "inline-block"
-          }}>
-            <Sparkles className="me-3" style={{ display: "inline-block" }} />
-            About Me
-            <Sparkles className="ms-3" style={{ display: "inline-block" }} />
-          </h2>
-          
-          <p className="lead mb-0" style={{ 
-            color: "rgba(255,255,255,0.8)",
-            textShadow: "0 2px 10px rgba(0,0,0,0.5)",
-            maxWidth: "600px",
-            margin: "0 auto"
-          }}>
-            Crafting digital experiences with code & creativity
-          </p>
-        </motion.div>
-
-        {/* Main Glass Card */}
-        <div className="row justify-content-center">
-          <div className="col-lg-11 col-xl-10">
-            <motion.div
-              className="card p-4 p-md-5"
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 0.2,
-                type: "spring",
-                stiffness: 100,
-                damping: 15
-              }}
-              whileHover={{ 
-                y: -5,
-                transition: { type: "spring", stiffness: 300, damping: 20 }
-              }}
-              style={{
-                background: "rgba(15, 23, 42, 0.6)",
-                backdropFilter: "blur(30px)",
-                borderRadius: "2rem",
-                border: "1px solid rgba(255, 255, 255, 0.15)",
-                boxShadow: `
-                  inset 0 2px 0 0 rgba(255,255,255,0.1),
-                  0 30px 60px rgba(0, 0, 0, 0.4),
-                  0 0 80px rgba(0, 204, 255, 0.2)
-                `,
-                overflow: "hidden",
-                position: "relative"
-              }}
-            >
-              {/* Animated Background Glow */}
-              <div style={{
-                position: "absolute",
-                top: "-50%",
-                left: "-50%",
-                width: "200%",
-                height: "200%",
-                background: `
-                  radial-gradient(circle at 30% 30%, rgba(0, 204, 255, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)
-                `,
-                zIndex: -1,
-                pointerEvents: "none",
-                animation: "rotate 20s linear infinite"
-              }} />
-
-              <style>{`
-                @keyframes rotate {
-                  from { transform: rotate(0deg); }
-                  to { transform: rotate(360deg); }
-                }
-              `}</style>
-
-              <div className="row align-items-center g-4 g-md-5">
-                {/* Left Image Section */}
-                <div className="col-md-5 text-center">
-                  <motion.div
-                    className="position-relative"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div
-                      style={{
-                        position: "relative",
-                        display: "inline-block",
-                        borderRadius: "1.5rem",
-                        overflow: "hidden",
-                        boxShadow: `
-                          0 20px 40px rgba(0,0,0,0.3),
-                          0 0 60px rgba(0, 204, 255, 0.3),
-                          inset 0 1px 0 rgba(255,255,255,0.2)
-                        `,
-                        border: "1px solid rgba(255, 255, 255, 0.2)"
-                      }}
-                    >
-                      <img
-                        src={aliImage}
-                        alt="Komil Hassan"
-                        className="img-fluid rounded-3"
-                        style={{
-                          filter: "brightness(1.05) contrast(1.1)",
-                          transform: "translateZ(0)",
-                          backfaceVisibility: "hidden"
-                        }}
-                      />
-                      
-                      {/* Image Glow Effect */}
-                      <div style={{
-                        position: "absolute",
-                        top: "0",
-                        left: "0",
-                        right: "0",
-                        bottom: "0",
-                        background: "linear-gradient(135deg, rgba(0,204,255,0.1) 0%, transparent 50%)",
-                        pointerEvents: "none"
-                      }} />
-                    </div>
-                    
-                    {/* Floating Badge */}
-                    <motion.div
-                      className="position-absolute"
-                      style={{
-                        top: "-10px",
-                        right: "-10px",
-                        background: "linear-gradient(135deg, #00cfff, #8b5cf6)",
-                        color: "white",
-                        padding: "8px 16px",
-                        borderRadius: "20px",
-                        fontSize: "0.85rem",
-                        fontWeight: "600",
-                        boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
-                        zIndex: 2
-                      }}
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ 
-                        repeat: Infinity, 
-                        duration: 3,
-                        ease: "easeInOut" 
-                      }}
-                    >
-                      <Award size={14} className="me-2" />
-                      Developer
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Tech Stack Tags */}
-                  <motion.div 
-                    className="mt-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    <h6 className="mb-3" style={{ 
-                      color: "rgba(255,255,255,0.9)",
-                      fontWeight: "500"
-                    }}>
-                      Tech Stack
-                    </h6>
-                    <div className="d-flex flex-wrap justify-content-center gap-2">
-                      {technologies.map((tech, index) => (
-                        <motion.div
-                          key={tech.name}
-                          className="d-flex align-items-center px-3 py-2"
-                          style={{
-                            background: `rgba(${parseInt(tech.color.slice(1,3), 16)}, ${parseInt(tech.color.slice(3,5), 16)}, ${parseInt(tech.color.slice(5,7), 16)}, 0.15)`,
-                            backdropFilter: "blur(10px)",
-                            borderRadius: "12px",
-                            border: `1px solid ${tech.color}40`,
-                            cursor: "pointer",
-                            transition: "all 0.3s ease"
-                          }}
-                          whileHover={{ 
-                            scale: 1.1,
-                            background: `rgba(${parseInt(tech.color.slice(1,3), 16)}, ${parseInt(tech.color.slice(3,5), 16)}, ${parseInt(tech.color.slice(5,7), 16)}, 0.25)`,
-                            boxShadow: `0 0 20px ${tech.color}40`
-                          }}
-                          onMouseEnter={() => setHoveredTech(index)}
-                          onMouseLeave={() => setHoveredTech(null)}
-                          animate={hoveredTech === index ? { 
-                            y: -5,
-                            transition: { type: "spring", stiffness: 400 }
-                          } : {}}
-                        >
-                          <span className="me-2" style={{ color: tech.color }}>
-                            {tech.icon}
-                          </span>
-                          <span style={{ 
-                            color: "rgba(255,255,255,0.9)",
-                            fontSize: "0.85rem",
-                            fontWeight: "500"
-                          }}>
-                            {tech.name}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Right Content Section */}
-                <div className="col-md-7">
-                  {/* Content Tabs */}
-                  <div className="mb-4">
-                    <div className="d-flex border-bottom" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                      {["about", "experience", "approach"].map((tab) => (
-                        <button
-                          key={tab}
-                          onClick={() => setActiveTab(tab)}
-                          style={{
-                            padding: "12px 24px",
-                            background: "transparent",
-                            border: "none",
-                            color: activeTab === tab ? "#00cfff" : "rgba(255,255,255,0.6)",
-                            fontWeight: "600",
-                            position: "relative",
-                            textTransform: "capitalize",
-                            fontSize: "1rem",
-                            transition: "all 0.3s ease"
-                          }}
-                        >
-                          {tab}
-                          {activeTab === tab && (
-                            <motion.div
-                              layoutId="underline"
-                              style={{
-                                position: "absolute",
-                                bottom: "-1px",
-                                left: "0",
-                                right: "0",
-                                height: "3px",
-                                background: "linear-gradient(90deg, #00cfff, #8b5cf6)",
-                                borderRadius: "3px 3px 0 0"
-                              }}
-                            />
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeTab}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {activeTab === "about" && (
-                        <div className="text-white">
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.9)"
-                          }}>
-                            <strong className="text-info">Hi! I'm Komil Hassan</strong>, a passionate full-stack developer 
-                            specializing in modern web technologies. With expertise in both frontend and backend 
-                            development, I create seamless digital experiences that combine functionality with aesthetics.
-                          </p>
-
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
-                          }}>
-                            My journey in web development has equipped me with a versatile skill set, allowing me 
-                            to build everything from dynamic SPAs to robust server-side applications. I believe 
-                            in writing clean, maintainable code and staying updated with industry best practices.
-                          </p>
-
-                          <p className="fs-5" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
-                          }}>
-                            When I'm not coding, I'm exploring new technologies, contributing to open-source 
-                            projects, or creating interactive visual experiences like this solar system!
-                          </p>
-                        </div>
-                      )}
-
-                      {activeTab === "experience" && (
-                        <div className="text-white">
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.9)"
-                          }}>
-                            <strong>Full Stack Development:</strong> Building end-to-end web applications with 
-                            React/Next.js on the frontend and Laravel/Node.js on the backend.
-                          </p>
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
-                          }}>
-                            <strong>API Development:</strong> Creating RESTful APIs and integrating third-party 
-                            services for seamless data flow between applications.
-                          </p>
-                          <p className="fs-5" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
-                          }}>
-                            <strong>Database Design:</strong> Structuring efficient MySQL/PostgreSQL databases 
-                            with proper indexing and optimization techniques.
-                          </p>
-                        </div>
-                      )}
-
-                      {activeTab === "approach" && (
-                        <div className="text-white">
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.9)"
-                          }}>
-                            <strong>User-Centric Design:</strong> Every project begins with understanding the 
-                            end-user's needs and crafting solutions that provide exceptional experiences.
-                          </p>
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
-                          }}>
-                            <strong>Performance Focus:</strong> Optimizing load times, reducing bundle sizes, 
-                            and implementing efficient algorithms for smooth performance.
-                          </p>
-                          <p className="fs-5" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
-                          }}>
-                            <strong>Continuous Learning:</strong> Staying updated with the latest frameworks, 
-                            tools, and best practices to deliver cutting-edge solutions.
-                          </p>
-                        </div>
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
-
-                  {/* Achievements Bar */}
-                  <motion.div 
-                    className="mt-4 pt-4 border-top"
-                    style={{ borderColor: "rgba(255,255,255,0.1)" }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                  >
-                    <div className="row g-3">
-                      {achievements.map((achievement, index) => (
-                        <div className="col-md-4" key={index}>
-                          <div className="d-flex align-items-center p-3" style={{
-                            background: "rgba(255,255,255,0.05)",
-                            borderRadius: "12px",
-                            border: "1px solid rgba(255,255,255,0.1)"
-                          }}>
-                            <div className="me-3" style={{ color: "#00cfff" }}>
-                              {achievement.icon}
-                            </div>
-                            <div>
-                              <h6 className="mb-0" style={{ 
-                                color: "rgba(255,255,255,0.95)",
-                                fontSize: "1.1rem"
-                              }}>
-                                {achievement.title}
-                              </h6>
-                              <small style={{ 
-                                color: "rgba(255,255,255,0.6)",
-                                fontSize: "0.8rem"
-                              }}>
-                                {achievement.desc}
-                              </small>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  {/* Action Buttons */}
-                  <motion.div 
-                    className="mt-4 pt-3"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                  >
-                    <div className="d-flex gap-3">
-                   <motion.a
-    href="/my-portfolio/jobcv.pdf"
-  download="Komil_Hassan_CV.pdf"
-  className="d-flex align-items-center justify-content-center px-4 py-3"
-  style={{
-    background: "linear-gradient(135deg, #00cfff, #8b5cf6)",
-    color: "white",
-    borderRadius: "12px",
-    textDecoration: "none",
-    fontWeight: "600",
-    flex: 1,
-    border: "none",
-    boxShadow: "0 10px 30px rgba(0, 204, 255, 0.3)",
-    cursor: "pointer",
-    position: "relative",
-    overflow: "hidden"
-  }}
-  whileHover={{ 
-    scale: 1.05,
-    boxShadow: "0 15px 40px rgba(0, 204, 255, 0.5)"
-  }}
-  whileTap={{ scale: 0.98 }}
-  onClick={(e) => {
-    // Add click handler for better compatibility
-    console.log("Downloading CV...");
-    
-    // For mobile browsers that block automatic downloads
-    if (/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)) {
-      e.preventDefault();
-      window.open('/jobcv.pdf', '_blank');
-      return;
-    }
-    
-    // For desktop, let the download attribute work naturally
-    // Optionally add visual feedback
-    const originalHTML = e.currentTarget.innerHTML;
-    e.currentTarget.innerHTML = '<span style="color: #00ff88">✓ Downloading...</span>';
-    e.currentTarget.style.background = 'linear-gradient(135deg, #00ff88, #00cfff)';
-    
-    setTimeout(() => {
-      e.currentTarget.innerHTML = originalHTML;
-      e.currentTarget.style.background = 'linear-gradient(135deg, #00cfff, #8b5cf6)';
-    }, 1000);
-  }}
-  title="Click to download Komil Hassan's CV (PDF)"
->
-  {/* Shine effect on hover */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: "-100%",
-    width: "100%",
-    height: "100%",
-    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
-    transition: "left 0.5s ease"
-  }} />
-  
-  <Download size={18} className="me-2" />
-  Download CV
-</motion.a>
-
-                      <motion.a
-                        href="#contact"
-                        className="d-flex align-items-center justify-content-center px-4 py-3"
-                        style={{
-                          background: "rgba(255,255,255,0.1)",
-                          color: "white",
-                          borderRadius: "12px",
-                          textDecoration: "none",
-                          fontWeight: "600",
-                          flex: 1,
-                          border: "1px solid rgba(255,255,255,0.2)",
-                          backdropFilter: "blur(10px)"
-                        }}
-                        whileHover={{ 
-                          scale: 1.05,
-                          background: "rgba(255,255,255,0.15)"
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Get In Touch
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating Particles */}
+      {/* Decorative Background Elements */}
       <div style={{
         position: "absolute",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
+        top: "20%",
+        left: "-10%",
+        width: "300px",
+        height: "300px",
+        background: "radial-gradient(circle, rgba(0,204,255,0.15) 0%, transparent 70%)",
+        borderRadius: "50%",
+        filter: "blur(60px)",
         pointerEvents: "none",
-        overflow: "hidden",
-        zIndex: -1
-      }}>
-        {[...Array(30)].map((_, i) => (
+      }} />
+      <div style={{
+        position: "absolute",
+        bottom: "20%",
+        right: "-10%",
+        width: "300px",
+        height: "300px",
+        background: "radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)",
+        borderRadius: "50%",
+        filter: "blur(60px)",
+        pointerEvents: "none",
+      }} />
+
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          style={{ textAlign: "center", marginBottom: "64px" }}
+        >
           <motion.div
-            key={i}
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            style={{ display: "inline-block", marginBottom: "20px" }}
+          >
+            <div style={{
+              background: "linear-gradient(135deg, rgba(0,204,255,0.15), rgba(139,92,246,0.15))",
+              padding: "8px 20px",
+              borderRadius: "50px",
+              border: "1px solid rgba(0,204,255,0.3)",
+            }}>
+              <span style={{ color: "#00cfff", fontSize: "0.85rem", fontWeight: "500", letterSpacing: "1px" }}>
+                WHO AM I
+              </span>
+            </div>
+          </motion.div>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
             style={{
-              position: "absolute",
-              width: "2px",
-              height: "2px",
-              background: "radial-gradient(circle, #00cfff, transparent)",
-              borderRadius: "50%",
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              filter: "blur(1px)"
+              fontSize: "clamp(2rem, 5vw, 3rem)",
+              fontWeight: "bold",
+              background: "linear-gradient(135deg, #ffffff, #00cfff, #8b5cf6)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              marginBottom: "16px",
             }}
-            animate={{
-              y: [0, -100],
-              x: [0, Math.random() * 20 - 10],
-              opacity: [0, 0.8, 0]
+          >
+            About Me
+          </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            style={{
+              color: "rgba(255,255,255,0.7)",
+              maxWidth: "600px",
+              margin: "0 auto",
+              fontSize: "1rem",
             }}
-            transition={{
-              repeat: Infinity,
-              duration: 3 + Math.random() * 4,
-              delay: Math.random() * 5,
-              ease: "linear"
+          >
+            Get to know the developer behind the code
+          </motion.p>
+        </motion.div>
+
+        {/* Main Grid - 2 Columns */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "30px" }}>
+          
+          {/* LEFT COLUMN: Profile + Bio */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            style={{
+              background: "rgba(15, 25, 45, 0.6)",
+              backdropFilter: "blur(16px)",
+              borderRadius: "28px",
+              border: "1px solid rgba(0, 204, 255, 0.25)",
+              padding: "32px",
             }}
-          />
-        ))}
+          >
+            {/* Avatar */}
+            <div style={{ textAlign: "center", marginBottom: "24px" }}>
+              <motion.div
+                whileHover={{ scale: 1.05, rotate: 5 }}
+                style={{
+                  width: "120px",
+                  height: "120px",
+                  background: "linear-gradient(135deg, #00cfff, #8b5cf6)",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0 auto 20px",
+                  boxShadow: "0 0 40px rgba(0,204,255,0.4)",
+                  position: "relative",
+                }}
+              >
+                <User size={52} color="white" />
+                <div style={{
+                  position: "absolute",
+                  bottom: "5px",
+                  right: "5px",
+                  background: "#10b981",
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  border: "3px solid #0a0a1a",
+                }} />
+              </motion.div>
+              <h3 style={{ color: "white", fontSize: "1.6rem", marginBottom: "6px" }}>Komil Hassan</h3>
+              <p style={{ color: "#00cfff", fontSize: "0.9rem", marginBottom: "20px" }}>Full Stack Developer</p>
+              
+              <div style={{ display: "flex", justifyContent: "center", gap: "15px", marginBottom: "24px", flexWrap: "wrap" }}>
+                {[
+                  { icon: <MapPin size={14} />, text: "Pakistan" },
+                  { icon: <Calendar size={14} />, text: "Available" },
+                  { icon: <Award size={14} />, text: "3+ Years" },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px", background: "rgba(255,255,255,0.05)", padding: "6px 12px", borderRadius: "20px" }}>
+                    <span style={{ color: "#00cfff" }}>{item.icon}</span>
+                    <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.7rem" }}>{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bio */}
+            <div style={{ marginBottom: "24px" }}>
+              <p style={{ color: "rgba(255,255,255,0.85)", lineHeight: "1.7", marginBottom: "16px", fontSize: "0.9rem" }}>
+                I'm a passionate <span style={{ color: "#00cfff", fontWeight: "500" }}>Full Stack Developer</span> with a mission to create 
+                exceptional digital experiences that make a difference.
+              </p>
+              <p style={{ color: "rgba(255,255,255,0.7)", lineHeight: "1.7", fontSize: "0.9rem" }}>
+                My journey in web development is driven by curiosity and the desire to solve 
+                complex problems through elegant code. I believe in writing clean, maintainable 
+                solutions that stand the test of time.
+              </p>
+            </div>
+
+            {/* Qualities */}
+            <div style={{ marginBottom: "28px" }}>
+              <h4 style={{ color: "white", fontSize: "1rem", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <Star size={18} color="#00cfff" />
+                What I Bring
+              </h4>
+              {qualities.map((q, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px", padding: "8px 12px", background: "rgba(255,255,255,0.03)", borderRadius: "12px" }}>
+                  <div style={{ color: "#00cfff" }}>{q.icon}</div>
+                  <div>
+                    <div style={{ color: "white", fontSize: "0.85rem", fontWeight: "500" }}>{q.title}</div>
+                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem" }}>{q.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Download Button */}
+            <motion.a
+              href="/my-portfolio/jobcv.pdf"
+              download="Komil_Hassan_CV.pdf"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px",
+                width: "100%",
+                padding: "14px",
+                background: "linear-gradient(135deg, #00cfff, #8b5cf6)",
+                color: "white",
+                borderRadius: "14px",
+                textDecoration: "none",
+                fontWeight: "600",
+                fontSize: "0.9rem",
+                cursor: "pointer",
+              }}
+            >
+              <Download size={18} />
+              Download Resume
+              <ArrowRight size={16} />
+            </motion.a>
+          </motion.div>
+
+          {/* RIGHT COLUMN: Stats + Timeline + Achievements */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            style={{
+              background: "rgba(15, 25, 45, 0.6)",
+              backdropFilter: "blur(16px)",
+              borderRadius: "28px",
+              border: "1px solid rgba(0, 204, 255, 0.25)",
+              padding: "32px",
+            }}
+          >
+            {/* Stats Grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "15px", marginBottom: "32px" }}>
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  onMouseEnter={() => setHoveredStat(i)}
+                  onMouseLeave={() => setHoveredStat(null)}
+                  animate={hoveredStat === i ? { y: -5, scale: 1.02 } : {}}
+                  style={{
+                    textAlign: "center",
+                    padding: "16px 12px",
+                    background: `linear-gradient(135deg, ${stat.color}15, transparent)`,
+                    borderRadius: "16px",
+                    border: `1px solid ${stat.color}30`,
+                    cursor: "pointer",
+                  }}
+                >
+                  <div style={{ color: stat.color, marginBottom: "10px" }}>{stat.icon}</div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: stat.delay }}
+                    viewport={{ once: true }}
+                    style={{ color: "white", fontSize: "1.5rem", fontWeight: "bold" }}
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <div style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.7rem" }}>{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Journey Timeline */}
+            <div style={{ marginBottom: "32px" }}>
+              <h4 style={{ color: "white", fontSize: "1rem", marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <TrendingUp size={18} color="#00cfff" />
+                My Journey
+              </h4>
+              {timeline.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                  viewport={{ once: true }}
+                  onClick={() => setActiveTimeline(i)}
+                  style={{
+                    display: "flex",
+                    gap: "16px",
+                    marginBottom: "16px",
+                    padding: "12px",
+                    background: activeTimeline === i ? "rgba(0,204,255,0.1)" : "rgba(255,255,255,0.03)",
+                    borderRadius: "16px",
+                    cursor: "pointer",
+                    transition: "all 0.3s",
+                    border: activeTimeline === i ? "1px solid rgba(0,204,255,0.3)" : "1px solid transparent",
+                  }}
+                >
+                  <div style={{
+                    width: "40px",
+                    height: "40px",
+                    background: `linear-gradient(135deg, ${item.color}, ${item.color}80)`,
+                    borderRadius: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "white",
+                  }}>
+                    {item.icon}
+                  </div>
+                  <div>
+                    <div style={{ color: "#00cfff", fontSize: "0.65rem", marginBottom: "2px" }}>{item.year}</div>
+                    <div style={{ color: "white", fontSize: "0.85rem", fontWeight: "500", marginBottom: "2px" }}>{item.title}</div>
+                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem" }}>{item.description}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Achievements */}
+            <div style={{ marginBottom: "32px" }}>
+              <h4 style={{ color: "white", fontSize: "1rem", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <Trophy size={18} color="#f59e0b" />
+                Achievements
+              </h4>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "10px" }}>
+                {achievements.map((item, i) => (
+                  <div key={i} style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    padding: "8px 12px",
+                    background: `linear-gradient(135deg, ${item.color}10, transparent)`,
+                    borderRadius: "12px",
+                    border: `1px solid ${item.color}20`,
+                  }}>
+                    <div style={{ color: item.color }}>{item.icon}</div>
+                    <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.75rem" }}>{item.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Fun Facts */}
+            <div>
+              <h4 style={{ color: "white", fontSize: "1rem", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <Zap size={18} color="#f59e0b" />
+                Fun Facts
+              </h4>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px" }}>
+                {funFacts.map((fact, i) => (
+                  <div key={i} style={{
+                    textAlign: "center",
+                    padding: "12px 8px",
+                    background: "rgba(255,255,255,0.03)",
+                    borderRadius: "12px",
+                  }}>
+                    <div style={{ color: "#00cfff", marginBottom: "6px" }}>{fact.icon}</div>
+                    <div style={{ color: "white", fontSize: "1rem", fontWeight: "bold" }}>{fact.value}</div>
+                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.6rem" }}>{fact.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -14,18 +14,51 @@ html, body, #root {
   width: 100%;
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
-  background: transparent !important; /* CHANGED from #000 to transparent */
+  background: transparent !important;
   overflow-x: hidden;
 }
 
 /* ===========================
-   SOLAR SYSTEM CANVAS
+   DARK MODE (Default)
 =========================== */
-/* REMOVE the .solar-canvas class - not needed */
-/* SolarSystem component handles its own styling */
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a2e;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --card-bg: rgba(15, 23, 42, 0.7);
+  --border-color: rgba(0, 204, 255, 0.2);
+  --gradient-start: #00cfff;
+  --gradient-end: #8b5cf6;
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
 
 /* ===========================
-   HERO SECTION - FIX THIS!
+   LIGHT MODE
+=========================== */
+[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --text-muted: rgba(0, 0, 0, 0.5);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --gradient-start: #00cfff;
+  --gradient-end: #8b5cf6;
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply global styles */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* ===========================
+   HERO SECTION
 =========================== */
 #hero {
   display: flex;
@@ -34,353 +67,76 @@ html, body, #root {
   align-items: center;
   text-align: center;
   min-height: 100vh;
-  background: transparent !important; /* CHANGED from gradient to transparent */
+  background: transparent !important;
   position: relative;
-  z-index: 1; /* Higher than background but lower than header */
+  z-index: 1;
+  padding-top: 80px !important;
 }
 
 #hero h1 {
   font-size: 3rem;
   font-weight: 700;
-  color: #ffffff !important; /* CHANGED for better contrast */
+  color: var(--text-primary) !important;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 #hero p {
   font-size: 1.5rem;
-  color: #e5e7eb !important; /* CHANGED for better contrast */
+  color: var(--text-secondary) !important;
   margin-bottom: 2rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-#hero a {
-  padding: 0.75rem 1.5rem;
-  background-color: #2563eb;
-  color: white;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  transition: all 0.3s;
-  text-decoration: none;
-  z-index: 2;
-  position: relative;
+#hero .intro-text {
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.8;
+  color: var(--text-secondary);
+  padding: 0 1rem;
 }
 
-#hero a:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-}
-
-/* ===========================
-   DARK MODE FIXES
-=========================== */
-.dark #hero {
-  background: transparent !important; /* CHANGED - no gradient */
-}
-
-.dark #hero h1,
-.dark #hero p,
-.dark #hero a {
-  color: #ffffff !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+#hero .scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
 /* ===========================
-   SECTION BACKGROUND FIXES
+   SECTION BACKGROUNDS
 =========================== */
 section {
   background: transparent !important;
   position: relative;
 }
 
-/* Make sure other sections also have transparent backgrounds */
-#about, #skills, #projects, #journey, #stats, 
-#achievements, #testimonials, #blog, #funfacts, #contact {
+#about, #skills, #projects, #contact {
   background: transparent !important;
   position: relative;
   z-index: 1;
 }
 
-/* Add subtle overlay for text readability */
-section > div {
-  position: relative;
-  z-index: 2;
-}
-
-/* Optional: Add a slight dark overlay behind text */
-.text-container {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(4px);
-  padding: 2rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.section-container {
+  padding: 80px 0;
 }
 
 /* ===========================
-   RESPONSIVE SOLAR SYSTEM
+   NAVBAR STYLES
 =========================== */
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .hero-responsive {
-    min-height: 90vh !important;
-    padding-top: 60px !important;
-  }
-  
-  .hero-responsive h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-  }
-  
-  .hero-responsive p {
-    font-size: 1.1rem !important;
-  }
-  
-  .responsive-card {
-    padding: 1.5rem !important;
-    margin: 0.5rem 0 !important;
-    backdrop-filter: blur(5px) !important;
-  }
-  
-  /* Reduce text shadows on mobile for performance */
-  .hero-with-solar-background h1,
-  .hero-with-solar-background p {
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7) !important;
-  }
-  
-  /* Mobile overlay - stronger for better text contrast */
-  .mobile-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.6)
-    ) !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-responsive {
-    min-height: 85vh !important;
-  }
-  
-  .hero-responsive h1 {
-    font-size: 1.8rem !important;
-  }
-  
-  .responsive-card {
-    padding: 1rem !important;
-    border-radius: 12px !important;
-  }
-}
-
-/* Tablet optimizations */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .hero-responsive h1 {
-    font-size: 2.5rem !important;
-  }
-  
-  .responsive-card {
-    padding: 2rem !important;
-  }
-  
-  .desktop-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.25),
-      rgba(0, 0, 0, 0.45)
-    ) !important;
-  }
-}
-
-/* Performance optimizations */
-@media (prefers-reduced-motion: reduce) {
-  .solar-system-background {
-    animation: none !important;
-  }
-}
-
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-  .content-card {
-    padding: 1.5rem !important;
-    margin: 1rem 0 !important;
-  }
-  
-  /* Larger tap targets */
-  .btn, a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-}
-
-/* High DPI screens */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .solar-system-background {
-    image-rendering: -webkit-optimize-contrast;
-  }
-}
-
-/* Reduced data mode */
-@media (prefers-reduced-data: reduce) {
-  .solar-system-background {
-    display: none !important;
-  }
-  
-  body {
-    background: #0a0a0a !important;
-  }
-}
-
-/* Responsive content cards */
-.responsive-card {
-  background: rgba(255, 255, 255, 0.92) !important;
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+.navbar {
+  background: rgba(5, 10, 25, 0.95) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000 !important;
   transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-  .responsive-card {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(8px);
-    padding: 1.5rem;
-  }
-}
-
-.dark .responsive-card {
-  background: rgba(15, 23, 42, 0.92) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Solar overlay for different screens */
-.solar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -99;
-  pointer-events: none;
-}
-
-.mobile-overlay {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.35),
-    rgba(0, 0, 0, 0.55)
-  );
-}
-
-.desktop-overlay {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.4)
-  );
-}
-
-/* ===========================
-   RESPONSIVE SOLAR SYSTEM OVERRIDES
-=========================== */
-
-/* Ensure HTML and body don't interfere */
-html.solar-enabled, 
-body.solar-enabled {
-  background: transparent !important;
-  overflow-x: hidden;
-}
-
-/* Hero section fixes */
-#hero {
-  background: transparent !important;
-  position: relative;
-  z-index: 1;
-}
-
-/* Remove conflicting backgrounds */
-section {
-  background: transparent !important;
-}
-
-/* Text visibility over solar background */
-.text-over-solar {
-  color: #ffffff !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
-}
-
-.dark .text-over-solar {
-  color: #f3f4f6 !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
-}
-
-/* Container adjustments for solar background */
-.container, .container-fluid {
-  position: relative;
-  z-index: 2;
-}
-
-/* Bootstrap card adjustments */
-.card {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-.dark .card {
-  background: rgba(30, 41, 59, 0.85) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Navigation fixes */
-.navbar {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.dark .navbar {
-  background: rgba(15, 23, 42, 0.9) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Footer fixes */
-footer {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.dark footer {
-  background: rgba(15, 23, 42, 0.9) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Mobile-specific overrides */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0.5rem 1rem !important;
-  }
-  
-  .hero-responsive {
-    padding: 2rem 1rem !important;
-  }
-  
-  /* Reduce blur on mobile for performance */
-  .card, .navbar, footer {
-    backdrop-filter: blur(5px) !important;
-  }
-}
-
-/* ===========================
-   NAVBAR FIXES
-=========================== */
-.navbar {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .navbar-brand {
@@ -392,88 +148,318 @@ footer {
   padding: 0.5rem !important;
 }
 
+.nav-link {
+  color: var(--text-primary) !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #00cfff !important;
+}
+
 /* ===========================
-   HERO SECTION FIXES
+   CARDS & GLASS MORPHISM
 =========================== */
-#hero {
-  min-height: 100vh;
-  padding-top: 80px !important; /* Add padding for fixed navbar */
+.card, .responsive-card {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .card,
+[data-theme="light"] .responsive-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  color: #333 !important;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+footer {
+  background: rgba(5, 10, 25, 0.9) !important;
+  border-top: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] footer {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #333 !important;
+}
+
+/* ===========================
+   PROFESSIONAL LOGO
+=========================== */
+.professional-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  position: relative;
+  padding: 4px 0;
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.logo-icon span {
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  z-index: 1;
+}
+
+.logo-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  line-height: 1.2;
 }
 
-/* Fix for the text content spacing */
-#hero .container {
-  margin-top: -50px; /* Compensate for navbar height */
+.logo-firstname {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 1px;
 }
 
-/* Fix the "I transform complex problems..." text */
-#hero .intro-text {
-  max-width: 700px;
-  margin: 0 auto 3rem auto;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  padding: 0 1rem;
+.logo-lastname {
+  font-size: 1.15rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
 }
 
-/* Fix the Explore More button positioning */
-#hero .scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10; /* Make sure it's above everything */
+.logo-tagline {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  margin-top: 2px;
+  text-transform: uppercase;
 }
 
-/* Fix particles container */
-#hero .particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.professional-logo:hover .logo-icon {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
+}
+
+.professional-logo:hover .logo-firstname {
+  color: #00cfff;
+}
+
+.professional-logo:hover .logo-tagline {
+  color: rgba(0, 204, 255, 0.8);
+}
+
+/* ===========================
+   SOLAR SYSTEM OVERLAY
+=========================== */
+.solar-overlay {
+  position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -99;
   pointer-events: none;
-  z-index: -1; /* Keep particles behind content */
 }
 
-/* Fix gradient backgrounds positioning */
-#hero .gradient-background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -2;
+.mobile-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
 }
 
-/* Ensure content has proper z-index */
-#hero .content-container {
-  position: relative;
-  z-index: 2;
+.desktop-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
 }
 
-/* Mobile fixes */
+/* ===========================
+   SCROLLBAR
+=========================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #00cfff, #8b5cf6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #00cfff, #8b5cf6);
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(0, 204, 255, 0.3);
+  color: white;
+}
+
+/* ===========================
+   DARK MODE TOGGLE BUTTON
+=========================== */
+.dark-mode-toggle,
+button[title="Switch to Light Mode"],
+button[title="Switch to Dark Mode"] {
+  z-index: 10000 !important;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
 @media (max-width: 768px) {
   #hero {
     padding-top: 70px !important;
     min-height: 90vh;
   }
   
-  #hero .container {
-    margin-top: -30px;
+  #hero h1 {
+    font-size: 2rem !important;
   }
   
-  #hero .scroll-indicator {
-    bottom: 1rem;
+  #hero p {
+    font-size: 1.1rem !important;
+  }
+  
+  .section-container {
+    padding: 50px 0;
+  }
+  
+  .responsive-card {
+    padding: 1.5rem !important;
   }
   
   .navbar {
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+  
+  .card, .navbar, footer {
+    backdrop-filter: blur(5px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  .responsive-card {
+    padding: 1rem !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section-container {
+    padding: 70px 0;
+  }
+  
+  .responsive-card {
+    padding: 2rem !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Smooth Loading Animation */
+.solar-content {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  /* Hide desktop elements on mobile */
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* Adjust body padding for bottom nav */
+  body {
+    padding-bottom: 70px !important;
+  }
+  
+  /* Make buttons touch-friendly */
+  button, .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Adjust modal width for mobile */
+  .modal-content, [style*="position: fixed"] > div {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Fix chat window on mobile */
+  .chat-window {
+    width: 100% !important;
+    height: 80vh !important;
+    bottom: 70px !important;
+    right: 0 !important;
+    left: 0 !important;
+    margin: 0 auto !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+  button, .btn {
+    min-height: 40px;
+    min-width: 40px;
+  }
+  
+  .floating-button {
+    transform: scale(0.9);
   }
 }

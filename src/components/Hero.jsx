@@ -1,3 +1,4 @@
+import GetAppButton from './GetAppButton';
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
@@ -322,12 +323,13 @@ export default function Hero() {
               color: "#333",
               link: "https://github.com/amilokz"
             },
-            { 
+             
+              { 
               name: "LinkedIn", 
               icon: "bi-linkedin", 
               color: "#0077B5",
-              link: "https://linkedin.com/in/amilokz"
-            },
+              link: "https://www.linkedin.com/in/komil-hassan-a97b66282"  
+             },
             { 
               name: "Twitter", 
               icon: "bi-twitter", 

@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Briefcase } from "lucide-react";
 
 export default function Header() {
-  const [darkMode, setDarkMode] = useState(true);
   const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
+
+  // Only essential sections
+  const navItems = [
+    { id: "hero", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "skills", label: "Skills" },
+    { id: "projects", label: "Projects" },
+    { id: "contact", label: "Contact" }
+  ];
 
   // Add shadow on scroll
   useEffect(() => {
@@ -13,22 +22,11 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Dark/Light Mode effect
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.add("light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
   // Active section highlighting
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
     const handleScroll = () => {
-      const scrollY = window.scrollY + 100; // offset for navbar
+      const scrollY = window.scrollY + 100;
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
@@ -41,101 +39,99 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Links
-  const mainLinks = [
-    { id: "hero", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projects" },
-  ];
-
-  const moreLinks = [
-    { id: "journey", label: "Journey" },
-    { id: "testimonials", label: "Testimonials" },
-    { id: "blog", label: "Blog" },
-    { id: "funfacts", label: "Fun Facts" },
-    { id: "contact", label: "Contact" },
-  ];
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <Navbar
       expand="lg"
       fixed="top"
-      className={`py-3 transition ${
-        scrolled ? "shadow-sm bg-white dark:bg-black" : "bg-white dark:bg-black"
-      }`}
+      className={`py-3 transition`}
+      style={{
+        background: scrolled 
+          ? "rgba(5, 10, 25, 0.95)" 
+          : "rgba(5, 10, 25, 0.85)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(0, 204, 255, 0.2)",
+      }}
     >
       <Container>
-        {/* Brand */}
-        <Navbar.Brand href="#hero" className="fw-bold fs-3 text-primary">
-          Komil <span className="text-dark dark:text-white">Hassan</span>
+        {/* Brand / Logo */}
+        <Navbar.Brand 
+          href="#hero" 
+          className="fw-bold"
+          style={{
+            fontSize: "1.5rem",
+            background: "linear-gradient(135deg, #ffffff, #00cfff, #8b5cf6)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          Komil Hassan
         </Navbar.Brand>
 
         {/* Toggler */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle 
+          aria-controls="basic-navbar-nav"
+          style={{
+            background: "rgba(0, 204, 255, 0.2)",
+            border: "1px solid rgba(0, 204, 255, 0.5)",
+            borderRadius: "8px",
+          }}
+        />
 
         {/* Navbar Links */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center gap-2">
 
-            {/* Main Links */}
-            {mainLinks.map((link) => (
+            {/* Main Navigation Links - Only 5 sections */}
+            {navItems.map((item) => (
               <Nav.Link
-                key={link.id}
-                href={`#${link.id}`}
-                className={`fw-semibold ${
-                  activeSection === link.id ? "text-primary" : ""
+                key={item.id}
+                href={`#${item.id}`}
+                className={`fw-semibold px-3 ${
+                  activeSection === item.id ? "active" : ""
                 }`}
+                style={{
+                  color: activeSection === item.id ? "#00cfff" : "rgba(255,255,255,0.85)",
+                  transition: "all 0.3s",
+                }}
               >
-                {link.label}
+                {item.label}
               </Nav.Link>
             ))}
 
-            {/* Dropdown Menu */}
-            <NavDropdown
-              title="More"
-              id="more-dropdown"
-              className={moreLinks.some(link => link.id === activeSection) ? "text-primary" : ""}
-            >
-              {moreLinks.map((link) => (
-                <NavDropdown.Item
-                  key={link.id}
-                  href={`#${link.id}`}
-                  className={activeSection === link.id ? "text-primary fw-semibold" : ""}
-                >
-                  {link.label}
-                </NavDropdown.Item>
-              ))}
-            </NavDropdown>
-
             {/* Hire Me Button */}
-            <Nav.Link href="#contact">
-              <Button size="sm" className="btn-primary fw-bold">
-                Hire Me
-              </Button>
-            </Nav.Link>
-
-            {/* Dark/Light Mode */}
-            <Nav.Link>
-              <Button
-                variant="outline-secondary"
-                size="sm"
-                onClick={() => setDarkMode(!darkMode)}
-              >
-                {darkMode ? "Light Mode" : "Dark Mode"}
-              </Button>
-            </Nav.Link>
-
-            {/* Social Icons */}
-            <Nav.Link href="https://github.com/amilokz" target="_blank">
-              <i className="bi bi-github fs-5"></i>
-            </Nav.Link>
-            <Nav.Link href="www.linkedin.com/in/komil-hassan-a97b66282" target="_blank">
-              <i className="bi bi-linkedin fs-5"></i>
-            </Nav.Link>
-            <Nav.Link href="https://twitter.com/komilhassan" target="_blank">
-              <i className="bi bi-twitter fs-5"></i>
-            </Nav.Link>
+            <Button
+              onClick={scrollToContact}
+              className="ms-2 px-4 py-2"
+              style={{
+                background: "linear-gradient(135deg, #00cfff, #8b5cf6)",
+                color: "white",
+                fontWeight: "600",
+                borderRadius: "10px",
+                border: "none",
+                boxShadow: "0 0 15px rgba(0, 204, 255, 0.4)",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow = "0 0 25px rgba(0, 204, 255, 0.6)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 0 15px rgba(0, 204, 255, 0.4)";
+              }}
+            >
+              <Briefcase size={16} />
+              Hire Me
+            </Button>
 
           </Nav>
         </Navbar.Collapse>
