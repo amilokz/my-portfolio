@@ -195,4 +195,4 @@ This project is constantly evolving - check back often to see what's new!
 
 Built with 💻 and ☕ by Komil Hassan
 
-</div>
+
