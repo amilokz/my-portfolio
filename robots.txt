@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amilokz.github.io/my-portfolio/sitemap.xml
