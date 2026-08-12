@@ -216,7 +216,7 @@ export default function About() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                   >
-                    <h6 className="mb-3" style={{ 
+                    <h6 className="tech-stack-title mb-3" style={{ 
                       color: "rgba(255,255,255,0.9)",
                       fontWeight: "500"
                     }}>
@@ -314,27 +314,24 @@ export default function About() {
                     >
                       {activeTab === "about" && (
                         <div className="text-white">
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.9)"
+                          <p className="about-intro fs-5 mb-4" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             <strong className="text-info">Hi! I'm Komil Hassan</strong>, a passionate full-stack developer 
                             specializing in modern web technologies. With expertise in both frontend and backend 
                             development, I create seamless digital experiences that combine functionality with aesthetics.
                           </p>
 
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
+                          <p className="about-intro fs-5 mb-4" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             My journey in web development has equipped me with a versatile skill set, allowing me 
                             to build everything from dynamic SPAs to robust server-side applications. I believe 
                             in writing clean, maintainable code and staying updated with industry best practices.
                           </p>
 
-                          <p className="fs-5" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
+                          <p className="about-intro fs-5" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             When I'm not coding, I'm exploring new technologies, contributing to open-source 
                             projects, or creating interactive visual experiences like this solar system!
@@ -344,23 +341,20 @@ export default function About() {
 
                       {activeTab === "experience" && (
                         <div className="text-white">
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.9)"
+                          <p className="about-intro fs-5 mb-4" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             <strong>Full Stack Development:</strong> Building end-to-end web applications with 
                             React/Next.js on the frontend and Laravel/Node.js on the backend.
                           </p>
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
+                          <p className="about-intro fs-5 mb-4" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             <strong>API Development:</strong> Creating RESTful APIs and integrating third-party 
                             services for seamless data flow between applications.
                           </p>
-                          <p className="fs-5" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
+                          <p className="about-intro fs-5" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             <strong>Database Design:</strong> Structuring efficient MySQL/PostgreSQL databases 
                             with proper indexing and optimization techniques.
@@ -370,23 +364,20 @@ export default function About() {
 
                       {activeTab === "approach" && (
                         <div className="text-white">
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.9)"
+                          <p className="about-intro fs-5 mb-4" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             <strong>User-Centric Design:</strong> Every project begins with understanding the 
                             end-user's needs and crafting solutions that provide exceptional experiences.
                           </p>
-                          <p className="fs-5 mb-4" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
+                          <p className="about-intro fs-5 mb-4" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             <strong>Performance Focus:</strong> Optimizing load times, reducing bundle sizes, 
                             and implementing efficient algorithms for smooth performance.
                           </p>
-                          <p className="fs-5" style={{ 
-                            lineHeight: "1.8",
-                            color: "rgba(255,255,255,0.85)"
+                          <p className="about-intro fs-5" style={{ 
+                            lineHeight: "1.8"
                           }}>
                             <strong>Continuous Learning:</strong> Staying updated with the latest frameworks, 
                             tools, and best practices to deliver cutting-edge solutions.
@@ -398,7 +389,7 @@ export default function About() {
 
                   {/* Achievements Bar */}
                   <motion.div 
-                    className="mt-4 pt-4 border-top"
+                    className="achievements-bar mt-4 pt-4 border-top"
                     style={{ borderColor: "rgba(255,255,255,0.1)" }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -407,22 +398,22 @@ export default function About() {
                     <div className="row g-3">
                       {achievements.map((achievement, index) => (
                         <div className="col-md-4" key={index}>
-                          <div className="d-flex align-items-center p-3" style={{
+                          <div className="achievement-card d-flex align-items-center p-3" style={{
                             background: "rgba(255,255,255,0.05)",
                             borderRadius: "12px",
                             border: "1px solid rgba(255,255,255,0.1)"
                           }}>
-                            <div className="me-3" style={{ color: "#00cfff" }}>
+                            <div className="achievement-icon me-3" style={{ color: "#00cfff" }}>
                               {achievement.icon}
                             </div>
                             <div>
-                              <h6 className="mb-0" style={{ 
+                              <h6 className="achievement-title mb-0" style={{ 
                                 color: "rgba(255,255,255,0.95)",
                                 fontSize: "1.1rem"
                               }}>
                                 {achievement.title}
                               </h6>
-                              <small style={{ 
+                              <small className="achievement-desc" style={{ 
                                 color: "rgba(255,255,255,0.6)",
                                 fontSize: "0.8rem"
                               }}>

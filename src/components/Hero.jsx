@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import { 
@@ -7,8 +7,10 @@ import {
   Sparkles, 
   ChevronDown
 } from "lucide-react";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Hero() {
+  const { darkMode } = useContext(ThemeContext);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const [particleCount, setParticleCount] = useState(80);
 
@@ -148,12 +150,16 @@ export default function Hero() {
           variants={itemVariants}
           style={{
             fontSize: "clamp(2.5rem, 8vw, 4rem)",
-            background: "linear-gradient(135deg, #ffffff 0%, #00cfff 50%, #8b5cf6 100%)",
+            background: darkMode
+              ? "linear-gradient(135deg, #ffffff 0%, #00cfff 50%, #8b5cf6 100%)"
+              : "linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             lineHeight: "1.1",
-            textShadow: "0 0 60px rgba(0, 204, 255, 0.3)"
+            textShadow: darkMode
+              ? "0 0 60px rgba(0, 204, 255, 0.3)"
+              : "0 0 60px rgba(167, 139, 250, 0.55)"
           }}
         >
           Komil Hassan
@@ -161,7 +167,9 @@ export default function Hero() {
             className="d-block mt-2"
             style={{
               fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
-              background: "linear-gradient(135deg, #00cfff 0%, #8b5cf6 100%)",
+              background: darkMode
+                ? "linear-gradient(135deg, #00cfff 0%, #8b5cf6 100%)"
+                : "linear-gradient(135deg, #c4b5fd 0%, #f5f3ff 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text"

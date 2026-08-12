@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function DarkModeToggle() {
-  const [dark, setDark] = useState(() => {
-    const saved = typeof window !== "undefined" && localStorage.getItem("theme");
-    return saved ? saved === "dark" : true;
-  });
-
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-    }
-  }, [dark]);
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
     <button
-      onClick={() => setDark(!dark)}
+      onClick={toggleTheme}
       style={{
         position: "fixed",
         right: 20,
@@ -33,9 +21,10 @@ export default function DarkModeToggle() {
         cursor: "pointer",
         backdropFilter: "blur(6px)",
       }}
-      title="Toggle dark / light"
+      title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      aria-label="Toggle light / dark mode"
     >
-      {dark ? <FaSun /> : <FaMoon />}
+      {darkMode ? <FaSun /> : <FaMoon />}
     </button>
   );
 }

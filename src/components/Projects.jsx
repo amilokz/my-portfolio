@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import projects from "../data/projects";
 import { Modal, Button, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Projects() {
   const navigate = useNavigate();
+  const { darkMode } = useContext(ThemeContext);
+  const light = !darkMode;
   const [selectedProject, setSelectedProject] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [filter, setFilter] = useState("All");
@@ -22,14 +25,14 @@ export default function Projects() {
     ...projects,
     {
       id: 9,
-      title: "Company Website",
+      title: "Ezitech Portal",
       category: "React",
-      shortDesc: "Modern company landing page with responsive design.",
+      shortDesc: "Modern online learning portal with responsive design.",
       description:
-        "Developed a fully responsive company website using React and Tailwind CSS. Features smooth animations, interactive sections, and optimized performance.",
-      image: "companypro.jpeg",
+        "Developed a fully responsive online learning portal using React and Tailwind CSS. Features smooth animations, interactive sections, and optimized performance.",
+      image: "Ezitech portal.jpeg",
       stack: ["React", "Tailwind CSS", "JavaScript"],
-      demo: "#",
+      demo: "https://portal.ezitech.org",
       github: "#",
       caseStudy: "/casestudy/1",
     },
@@ -68,20 +71,26 @@ export default function Projects() {
               <div
                 className="card h-100 shadow-lg cursor-pointer p-2"
                 style={{
-                  background: "rgba(0,0,0,0.35)",
+                  background: light ? "rgba(236, 231, 254, 0.95)" : "rgba(0,0,0,0.35)",
                   backdropFilter: "blur(20px)",
                   borderRadius: "1.5rem",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  color: "white",
+                  border: light
+                    ? "1px solid rgba(139, 92, 246, 0.35)"
+                    : "1px solid rgba(255,255,255,0.3)",
+                  color: light ? "#1f2937" : "white",
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-10px)";
-                  e.currentTarget.style.boxShadow = "0 0 60px rgba(255,255,255,0.4)";
+                  e.currentTarget.style.boxShadow = light
+                    ? "0 0 60px rgba(139, 92, 246, 0.5)"
+                    : "0 0 60px rgba(255,255,255,0.4)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 0 40px rgba(255,255,255,0.2)";
+                  e.currentTarget.style.boxShadow = light
+                    ? "0 0 40px rgba(139, 92, 246, 0.25)"
+                    : "0 0 40px rgba(255,255,255,0.2)";
                 }}
                 onClick={() => project.caseStudy ? navigate(project.caseStudy) : handleShow(project)}
               >
@@ -91,7 +100,7 @@ export default function Projects() {
                   <p className="card-text">{project.shortDesc}</p>
                   <div>
                     {project.stack.map((tech, idx) => (
-                      <Badge bg="info" className="me-1 mb-1" key={idx} style={{ fontSize: "0.8rem" }}>
+                      <Badge bg="info" className="tech-badge me-1 mb-1" key={idx} style={{ fontSize: "0.8rem" }}>
                         {tech}
                       </Badge>
                     ))}
@@ -114,7 +123,7 @@ export default function Projects() {
             <p>{selectedProject.description}</p>
             <div className="mb-3">
               {selectedProject.stack.map((tech, idx) => (
-                <Badge bg="info" className="me-1" key={idx}>
+                <Badge bg="info" className="tech-badge me-1" key={idx}>
                   {tech}
                 </Badge>
               ))}

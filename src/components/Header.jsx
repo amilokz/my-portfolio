@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Header() {
-  const [darkMode, setDarkMode] = useState(true);
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
   const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
 
@@ -12,17 +14,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Dark/Light Mode effect
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.add("light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
 
   // Active section highlighting
   useEffect(() => {
@@ -47,6 +38,7 @@ export default function Header() {
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
+    { id: "stats", label: "Stats" },
   ];
 
   const moreLinks = [
@@ -115,15 +107,27 @@ export default function Header() {
               </Button>
             </Nav.Link>
 
-            {/* Dark/Light Mode */}
-            <Nav.Link>
-              <Button
-                variant="outline-secondary"
-                size="sm"
-                onClick={() => setDarkMode(!darkMode)}
+            {/* Dark/Light Mode Toggle */}
+            <Nav.Link className="d-flex align-items-center">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={!darkMode}
+                aria-label="Toggle light/dark theme"
+                title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                onClick={toggleTheme}
+                className="theme-switch"
               >
-                {darkMode ? "Light Mode" : "Dark Mode"}
-              </Button>
+                <span className="theme-switch__track">
+                  <span className="theme-switch__icon theme-switch__icon--sun">
+                    <FaSun size={13} />
+                  </span>
+                  <span className="theme-switch__icon theme-switch__icon--moon">
+                    <FaMoon size={12} />
+                  </span>
+                  <span className={`theme-switch__knob ${darkMode ? "is-dark" : "is-light"}`} />
+                </span>
+              </button>
             </Nav.Link>
 
             {/* Social Icons */}

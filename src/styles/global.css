@@ -347,6 +347,15 @@ section {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.dark .navbar .nav-link,
+.dark .navbar .nav-link:not(.text-primary) {
+  color: #e5e7eb !important;
+}
+
+.dark .navbar .navbar-brand .text-dark {
+  color: #f9fafb !important;
+}
+
 /* Footer fixes */
 footer {
   background: rgba(255, 255, 255, 0.9) !important;
@@ -390,6 +399,95 @@ footer {
 .navbar-toggler {
   border: none !important;
   padding: 0.5rem !important;
+}
+
+/* ===========================
+   THEME TOGGLE SWITCH
+=========================== */
+.theme-switch {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.theme-switch__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 56px;
+  height: 28px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.55), rgba(124, 58, 237, 0.55));
+  border: 1px solid rgba(216, 180, 254, 0.45);
+  transition: background 0.3s ease;
+}
+
+.theme-switch__icon {
+  display: inline-flex;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.theme-switch__icon--sun {
+  color: #ffd54a;
+}
+
+.theme-switch__icon--moon {
+  color: #c3b8ff;
+}
+
+.theme-switch__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.theme-switch__knob.is-dark {
+  transform: translateX(28px);
+}
+
+/* ===========================
+   STATS FLIP CARDS
+=========================== */
+.stat-flip:hover .stat-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.stat-flip .stat-flip-face {
+  overflow: hidden;
+}
+
+/* Stats flip card text overrides for light theme */
+html.light #stats .stat-flip-front p {
+  color: #1f2937 !important;
+}
+
+html.light #stats .stat-flip-back p {
+  color: #1f2937 !important;
+}
+
+@media (max-width: 768px) {
+  .stat-flip {
+    width: 46% !important;
+    height: 170px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-flip {
+    width: 100% !important;
+    max-width: 240px;
+  }
 }
 
 /* ===========================
@@ -476,4 +574,320 @@ footer {
     padding-top: 0.75rem !important;
     padding-bottom: 0.75rem !important;
   }
+}
+
+/* ===========================
+   LIGHT THEME (light purple glass)
+=========================== */
+/* Light theme: the galaxy stays deep purple, and every surface becomes a
+   crystal-like frosted PURPLE glass panel, so content reads as glassy while
+   staying translucent. */
+html.light {
+  color: #f3e8ff !important;
+}
+
+/* Don't darken the purple galaxy with the dark overlay */
+html.light .solar-overlay,
+html.light .mobile-overlay,
+html.light .desktop-overlay {
+  background: transparent !important;
+}
+
+/* ---------- Section cards -> crystal purple glass ---------- */
+html.light .responsive-card {
+  background: rgba(139, 92, 246, 0.16) !important;
+  border: 1px solid rgba(216, 180, 254, 0.28) !important;
+  box-shadow: 0 8px 32px rgba(48, 25, 52, 0.35) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+html.light [style*="rgba(0,0,0,0.35)"] {
+  background: rgba(139, 92, 246, 0.22) !important;
+  border: 1px solid rgba(216, 180, 254, 0.3) !important;
+  color: #f3e8ff !important;
+}
+
+html.light .timeline-item .flex-grow-1,
+html.light .rounded-4[style*="rgba(255,255,255,0.03)"] {
+  background: rgba(139, 92, 246, 0.2) !important;
+  border: 1px solid rgba(216, 180, 254, 0.25) !important;
+}
+
+/* Other translucent-white inner cards (fun facts, testimonials, blog, about) */
+html.light .responsive-card [style*="rgba(255,255,255,0.04)"],
+html.light .responsive-card [style*="rgba(255,255,255,0.05)"],
+html.light .responsive-card [style*="rgba(255,255,255,0.08)"] {
+  background: rgba(139, 92, 246, 0.22) !important;
+  border: 1px solid rgba(216, 180, 254, 0.25) !important;
+}
+
+/* ---------- Navbar (crystal purple glass) ---------- */
+html.light .navbar {
+  background: rgba(139, 92, 246, 0.18) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(216, 180, 254, 0.25) !important;
+}
+
+html.light .navbar .nav-link {
+  color: #f3e8ff !important;
+}
+
+html.light .navbar .nav-link:hover,
+html.light .navbar .nav-link:focus {
+  color: #ffffff !important;
+}
+
+/* Brand "Hassan" stays white on the purple glass navbar */
+html.light .navbar .navbar-brand .text-dark {
+  color: #ffffff !important;
+}
+
+html.light .navbar-toggler {
+  background: rgba(139, 92, 246, 0.25) !important;
+  border-color: rgba(216, 180, 254, 0.4) !important;
+}
+
+html.light .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ---------- Footer (crystal purple glass) ---------- */
+html.light footer {
+  background: rgba(139, 92, 246, 0.16) !important;
+  border-top: 1px solid rgba(216, 180, 254, 0.25) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+/* ---------- Text on the crystal purple glass stays light ---------- */
+html.light .text-white {
+  color: #f3e8ff !important;
+}
+
+html.light .text-light,
+html.light .responsive-card p {
+  color: rgba(233, 213, 255, 0.9) !important;
+}
+
+/* About intro paragraphs: black text on the purple glass (light theme) */
+html.light #about .about-intro {
+  color: #000000 !important;
+}
+
+/* About intro paragraphs: white text in dark mode */
+.dark #about .about-intro {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* About achievements + tech stack: dark text on light theme */
+html.light #about .tech-stack-title,
+html.light #about .achievement-desc {
+  color: #000000 !important;
+}
+
+html.light #about .achievement-title,
+html.light #about .achievement-icon {
+  color: #6d28d9 !important;
+}
+
+/* About: divider line dark, achievement cards light glassy purple */
+html.light #about .achievements-bar {
+  border-color: rgba(31, 41, 55, 0.4) !important;
+}
+
+html.light #about .achievement-card {
+  background: rgba(233, 213, 255, 0.35) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Skills section: subtitle white, card descriptions dark, titles dark lavender */
+html.light #skills .lead {
+  color: #ffffff !important;
+}
+
+html.light #skills .card p {
+  color: #1f2937 !important;
+}
+
+html.light #skills .card h5 {
+  color: #5b21b6 !important;
+}
+
+/* Projects: titles dark lavender, descriptions black, tech capsules dark purple */
+html.light #projects .card-title {
+  color: #5b21b6 !important;
+}
+
+html.light #projects .card-text {
+  color: #000000 !important;
+}
+
+html.light #projects .tech-badge {
+  background-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+
+/* Social proof icons: default light, brand color on hover */
+html.light .social-proof-card .gh-icon,
+html.light .social-proof-card .li-icon,
+html.light .social-proof-card .wa-icon {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+html.light .social-proof-card .gh-icon:hover,
+html.light .social-proof-card:hover .gh-icon {
+  color: #181717 !important;
+  fill: #181717 !important;
+}
+
+html.light .social-proof-card .li-icon:hover,
+html.light .social-proof-card:hover .li-icon {
+  color: #0a66c2 !important;
+  fill: #0a66c2 !important;
+}
+
+html.light .social-proof-card .wa-icon:hover,
+html.light .social-proof-card:hover .wa-icon {
+  color: #25d366 !important;
+  fill: #25d366 !important;
+}
+
+/* Social proof icons show their own brand color on hover (both themes) */
+.social-proof-card:hover .gh-icon {
+  color: #181717 !important;
+  fill: #181717 !important;
+}
+
+.social-proof-card:hover .li-icon {
+  color: #0a66c2 !important;
+  fill: #0a66c2 !important;
+}
+
+.social-proof-card:hover .wa-icon {
+  color: #25d366 !important;
+  fill: #25d366 !important;
+}
+
+/* Section headings: white on light theme */
+html.light .responsive-card h2.display-5,
+html.light .responsive-card h2.display-6 {
+  color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* Other headings stay light violet on the purple glass */
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #d8b4fe !important;
+}
+
+/* Hero sits on the purple galaxy, so keep its text white */
+html.light #hero .text-white,
+html.light #hero .text-light,
+html.light #hero div[style*="rgba(15, 23, 42, 0.6)"] .text-white {
+  color: #ffffff !important;
+}
+
+/* ---------- Crystal purple buttons / CTA ---------- */
+html.light .btn-primary {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.65), rgba(124, 58, 237, 0.65)) !important;
+  border: 1px solid rgba(216, 180, 254, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #ffffff !important;
+}
+
+html.light .btn-primary:hover,
+html.light .btn-primary:focus {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.85), rgba(124, 58, 237, 0.85)) !important;
+  border-color: rgba(216, 180, 254, 0.7) !important;
+  color: #ffffff !important;
+}
+
+html.light .btn-outline-primary,
+html.light .btn-outline-secondary,
+html.light a[style*="rgba(255,255,255,0.1)"] {
+  background: rgba(139, 92, 246, 0.12) !important;
+  border: 1px solid rgba(139, 92, 246, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #e9d5ff !important;
+}
+
+html.light .btn-outline-primary:hover,
+html.light .btn-outline-secondary:hover,
+html.light a[style*="rgba(255,255,255,0.1)"]:hover {
+  background: rgba(168, 85, 247, 0.3) !important;
+  border-color: rgba(216, 180, 254, 0.8) !important;
+  color: #ffffff !important;
+}
+
+/* About "Get In Touch": white glass with dark text for clarity */
+html.light #about a[href="#contact"] {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  color: #1f2937 !important;
+}
+
+html.light #about a[href="#contact"]:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  color: #1f2937 !important;
+}
+
+html.light .btn {
+  box-shadow: 0 4px 16px rgba(48, 25, 52, 0.2) !important;
+}
+
+/* CTA / Download-CV buttons (inline cyan gradient) -> crystal purple glass */
+html.light a[href*="jobcv.pdf"] {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.65), rgba(124, 58, 237, 0.65)) !important;
+  border: 1px solid rgba(216, 180, 254, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(48, 25, 52, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* Hero CTA section: purple glass panel behind the CTA buttons */
+html.light #hero div[style*="rgba(15, 23, 42, 0.6)"] {
+  background: rgba(139, 92, 246, 0.18) !important;
+  border: 1px solid rgba(216, 180, 254, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(48, 25, 52, 0.35) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+/* Hero "View Portfolio" CTA button -> white glass morphism */
+html.light #hero a[href="#projects"] {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* ---------- Contact form fields (crystal purple glass) ---------- */
+html.light input,
+html.light textarea,
+html.light select {
+  background: rgba(139, 92, 246, 0.15) !important;
+  border: 1px solid rgba(216, 180, 254, 0.35) !important;
+  color: #f3e8ff !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: rgba(233, 213, 255, 0.55) !important;
 }

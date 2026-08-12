@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ProgressBar, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Skills() {
+  const { darkMode } = useContext(ThemeContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -108,6 +110,27 @@ export default function Skills() {
     return "danger";
   };
 
+  const light = !darkMode;
+  const cardColors = light
+    ? {
+        background: "rgba(236, 231, 254, 0.95)",
+        border: "rgba(139, 92, 246, 0.35)",
+        text: "#1f2937",
+        subText: "rgba(31, 41, 55, 0.85)",
+        muted: "rgba(31, 41, 55, 0.45)",
+        track: "rgba(139, 92, 246, 0.2)",
+        insetGlow: "rgba(255,255,255,0.6)",
+      }
+    : {
+        background: "rgba(15, 23, 42, 0.7)",
+        border: "rgba(255,255,255,0.15)",
+        text: "#ffffff",
+        subText: "rgba(255,255,255,0.7)",
+        muted: "rgba(255,255,255,0.3)",
+        track: "rgba(255,255,255,0.1)",
+        insetGlow: "rgba(255,255,255,0.1)",
+      };
+
   return (
     <section 
       id="skills" 
@@ -138,8 +161,8 @@ export default function Skills() {
             Technical Skills
           </h2>
           <p className="lead mb-0" style={{ 
-            color: "rgba(255,255,255,0.85)",
-            textShadow: "0 2px 10px rgba(0,0,0,0.6)",
+            color: light ? "#ffffff" : "rgba(255,255,255,0.85)",
+            textShadow: light ? "0 2px 8px rgba(48, 25, 52, 0.6)" : "0 2px 10px rgba(0,0,0,0.6)",
             maxWidth: "600px",
             margin: "0 auto"
           }}>
@@ -167,17 +190,17 @@ export default function Skills() {
               <div
                 className="card h-100 p-4"
                 style={{
-                  background: "rgba(15, 23, 42, 0.7)",
+                  background: cardColors.background,
                   backdropFilter: "blur(20px)",
                   borderRadius: "1.5rem",
-                  border: `1px solid ${hoveredCard === index ? skill.color + "80" : "rgba(255,255,255,0.15)"}`,
+                  border: `1px solid ${hoveredCard === index ? skill.color + "80" : cardColors.border}`,
                   boxShadow: `
-                    inset 0 1px 0 0 rgba(255,255,255,0.1),
+                    inset 0 1px 0 0 ${cardColors.insetGlow},
                     0 20px 40px rgba(0,0,0,0.3),
                     ${hoveredCard === index ? `0 0 30px ${skill.color}40` : "none"}
                   `,
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                  color: "white",
+                  color: cardColors.text,
                   overflow: "hidden",
                   position: "relative"
                 }}
@@ -230,7 +253,7 @@ export default function Skills() {
 
                 {/* Skill Description */}
                 <p className="mb-3" style={{ 
-                  color: "rgba(255,255,255,0.7)",
+                  color: light ? cardColors.text : cardColors.subText,
                   fontSize: "0.875rem",
                   lineHeight: "1.5"
                 }}>
@@ -241,7 +264,7 @@ export default function Skills() {
                 <div className="mt-3">
                   <div className="d-flex justify-content-between align-items-center mb-2">
                     <span style={{ 
-                      color: "rgba(255,255,255,0.9)",
+                      color: light ? "rgba(31, 41, 55, 0.9)" : "rgba(255,255,255,0.9)",
                       fontSize: "0.9rem",
                       fontWeight: "500"
                     }}>
@@ -260,7 +283,7 @@ export default function Skills() {
                   {/* Custom Progress Bar */}
                   <div style={{
                     height: "10px",
-                    background: "rgba(255,255,255,0.1)",
+                    background: cardColors.track,
                     borderRadius: "5px",
                     overflow: "hidden",
                     position: "relative"
@@ -301,7 +324,7 @@ export default function Skills() {
                       <span 
                         key={i}
                         style={{ 
-                          color: skill.level >= (i + 1) * 25 ? skill.color : "rgba(255,255,255,0.3)",
+                          color: skill.level >= (i + 1) * 25 ? skill.color : cardColors.muted,
                           fontWeight: skill.level >= (i + 1) * 25 ? "600" : "400"
                         }}
                       >
@@ -336,7 +359,7 @@ export default function Skills() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-5 pt-4 text-center"
           style={{
-            borderTop: "1px solid rgba(255,255,255,0.1)",
+            borderTop: light ? "1px solid rgba(139, 92, 246, 0.3)" : "1px solid rgba(255,255,255,0.1)",
             maxWidth: "800px",
             margin: "0 auto"
           }}
@@ -351,7 +374,7 @@ export default function Skills() {
                   background: "#4F46E5",
                   marginRight: "8px"
                 }} />
-                <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.9rem" }}>
+                <span style={{ color: light ? "#ffffff" : cardColors.subText, fontSize: "0.9rem" }}>
                   Advanced (85%+)
                 </span>
               </div>
@@ -365,7 +388,7 @@ export default function Skills() {
                   background: "#06B6D4",
                   marginRight: "8px"
                 }} />
-                <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.9rem" }}>
+                <span style={{ color: light ? "#ffffff" : cardColors.subText, fontSize: "0.9rem" }}>
                   Intermediate (70-84%)
                 </span>
               </div>
@@ -379,7 +402,7 @@ export default function Skills() {
                   background: "#F59E0B",
                   marginRight: "8px"
                 }} />
-                <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.9rem" }}>
+                <span style={{ color: light ? "#ffffff" : cardColors.subText, fontSize: "0.9rem" }}>
                   Learning (Below 70%)
                 </span>
               </div>

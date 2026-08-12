@@ -6,7 +6,6 @@ import SolarSystem from "./components/SolarSystem";
 
 // Main components
 import Header from "./components/Header";
-import DarkModeToggle from "./components/DarkModeToggle";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
@@ -185,11 +184,6 @@ export default function App() {
         <Router>
           {/* Header with responsive nav */}
           <Header />
-          
-          {/* Dark mode toggle - positioned based on screen */}
-          <div className={`dark-mode-wrapper ${isMobile ? 'mobile-toggle' : 'desktop-toggle'}`}>
-            <DarkModeToggle />
-          </div>
           
           <Routes>
             <Route path="/" element={<HomePage />} />

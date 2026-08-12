@@ -1,9 +1,10 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, useContext } from 'react';
 import * as THREE from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass.js';
+import { ThemeContext } from '../context/ThemeContext';
 
 // Responsive planet data (scales based on device)
 const getPlanetData = (isMobile) => ({
@@ -86,6 +87,7 @@ const planetTextures = {
 
 export default function SolarSystem() {
   const mountRef = useRef(null);
+  const { darkMode } = useContext(ThemeContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [performanceMode, setPerformanceMode] = useState(isMobile);
   
@@ -214,7 +216,10 @@ export default function SolarSystem() {
     
     // Responsive scene setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000011); // Dark blue instead of pure black
+    // Dark navy for dark theme, dark purple for light theme
+    scene.background = darkMode
+      ? new THREE.Color(0x000011)
+      : new THREE.Color(0x301934);
     
     // Responsive camera
     const camera = new THREE.PerspectiveCamera(
@@ -286,7 +291,7 @@ export default function SolarSystem() {
     }
     
     // Stars - responsive count
-    const starCount = isMobile ? 2000 : 8000;
+    const starCount = isMobile ? 4000 : 16000;
     const starGeometry = new THREE.BufferGeometry();
     const starPositions = new Float32Array(starCount * 3);
     
@@ -303,7 +308,8 @@ export default function SolarSystem() {
       size: isMobile ? 0.8 : 1.2,
       sizeAttenuation: true,
       transparent: true,
-      opacity: isMobile ? 0.7 : 0.9
+      // Fully opaque on the light background so they read as bright white like dark mode
+      opacity: darkMode ? (isMobile ? 0.7 : 0.9) : 1.0
     });
     
     const stars = new THREE.Points(starGeometry, starMaterial);
@@ -396,9 +402,9 @@ export default function SolarSystem() {
         
         const trailGeometry = new THREE.BufferGeometry().setFromPoints(points);
         const trailMaterial = new THREE.LineBasicMaterial({
-          color: planet.userData.color,
+          color: darkMode ? planet.userData.color : 0xd6c8ff,
           transparent: true,
-          opacity: 0.2,
+          opacity: darkMode ? 0.2 : 0.55,
           linewidth: 1
         });
         
@@ -564,7 +570,7 @@ export default function SolarSystem() {
         mountRef.current.removeChild(renderer.domElement);
       }
     };
-  }, [isMobile, performanceMode, planetData, createResponsivePlanet, createAsteroidBelt]);
+  }, [isMobile, performanceMode, planetData, createResponsivePlanet, createAsteroidBelt, darkMode]);
 
   return (
     <div 
