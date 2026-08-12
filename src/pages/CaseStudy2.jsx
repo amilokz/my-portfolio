@@ -33,7 +33,7 @@ export default function CaseStudy2() {
       </p>
 
       <img
-        src="serp"
+        src="serp.jpeg"
         alt="Case Study 2"
         className="img-fluid rounded"
       />

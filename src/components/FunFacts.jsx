@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
+import { ThemeContext } from "../context/ThemeContext";
 import { FaCoffee, FaCode, FaMoon, FaPuzzlePiece } from "react-icons/fa";
 
 const facts = [
@@ -10,6 +11,9 @@ const facts = [
 ];
 
 export default function FunFacts() {
+  const { darkMode } = useContext(ThemeContext);
+  const light = !darkMode;
+
   return (
     <section id="funfacts" className="py-5 text-white" style={{ background: "transparent" }}>
       <h2 className="text-center fw-bold mb-5 display-5">Fun Facts & Hobbies</h2>
@@ -19,20 +23,21 @@ export default function FunFacts() {
           {facts.map((f, i) => (
             <motion.div
               key={i}
-              className="p-4 rounded-4 text-center"
+              className="funfact-card p-4 rounded-4 text-center"
               style={{
                 width: 220,
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: light ? "#ffffff" : "rgba(255,255,255,0.04)",
+                border: light ? "1px solid rgba(139,92,246,0.35)" : "1px solid rgba(255,255,255,0.08)",
                 backdropFilter: "blur(12px)",
+                color: light ? "#1f2937" : "#ffffff",
               }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
             >
-              <div className="mb-3" style={{ color: "#00cfff" }}>{f.icon}</div>
-              <h3 className="fw-bold">{f.value > 1 ? f.value : ""}</h3>
+              <div className="mb-3" style={{ color: light ? "#6d28d9" : "#00cfff" }}>{f.icon}</div>
+              <h3 className="fw-bold" style={{ color: "inherit" }}>{f.value > 1 ? f.value : ""}</h3>
               <p className="mb-0">{f.label}</p>
             </motion.div>
           ))}

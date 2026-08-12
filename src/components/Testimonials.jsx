@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function Testimonials() {
+  const { darkMode } = useContext(ThemeContext);
+  const light = !darkMode;
   const reviews = [
     {
       name: "Sir kashif",
@@ -41,14 +44,15 @@ export default function Testimonials() {
               <div
                 className="p-4 rounded-4"
                 style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.15)",
+                  background: light ? "rgba(236,231,254,0.95)" : "rgba(255,255,255,0.08)",
+                  border: light ? "1px solid rgba(139,92,246,0.35)" : "1px solid rgba(255,255,255,0.15)",
                   backdropFilter: "blur(10px)",
+                  color: light ? "#1f2937" : "#ffffff",
                 }}
               >
                 <p className="fst-italic">“{r.message}”</p>
                 <h5 className="mt-3 fw-bold">{r.name}</h5>
-                <span className="text-info">{r.role}</span>
+                <span className="testimonial-role">{r.role}</span>
               </div>
             </motion.div>
           ))}

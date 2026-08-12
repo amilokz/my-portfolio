@@ -33,7 +33,7 @@ export default function Blog() {
               viewport={{ once: true }}
             >
               <div
-                className="p-4 rounded-4"
+                className="blog-card p-4 rounded-4"
                 style={{
                   background: "rgba(255,255,255,0.08)",
                   border: "1px solid rgba(255,255,255,0.15)",

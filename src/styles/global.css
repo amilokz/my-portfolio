@@ -108,6 +108,19 @@ section > div {
   z-index: 2;
 }
 
+/* Section spacing between cards */
+.section-with-solar {
+  padding-top: 4.5rem !important;
+  padding-bottom: 4.5rem !important;
+}
+
+@media (max-width: 768px) {
+  .section-with-solar {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+}
+
 /* Optional: Add a slight dark overlay behind text */
 .text-container {
   background: rgba(0, 0, 0, 0.3);
@@ -476,6 +489,47 @@ html.light #stats .stat-flip-back p {
   color: #1f2937 !important;
 }
 
+/* Achievements flip card text overrides for light theme */
+html.light #achievements .stat-flip-front p,
+html.light #achievements .stat-flip-back p {
+  color: #1f2937 !important;
+}
+
+/* Testimonials: dark text + purple role on light theme */
+.testimonial-role {
+  color: #60a5fa !important;
+}
+
+html.light #testimonials p,
+html.light #testimonials h5 {
+  color: #1f2937 !important;
+}
+
+html.light #testimonials .testimonial-role {
+  color: #7c3aed !important;
+}
+
+/* Blog: dark text on light cards for light theme */
+html.light #blog .blog-card {
+  background: rgba(236, 231, 254, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+}
+
+html.light #blog h4,
+html.light #blog p {
+  color: #1f2937 !important;
+}
+
+html.light #blog .text-info {
+  color: #7c3aed !important;
+}
+
+/* Fun Facts: white cards, dark text, purple icons on light theme */
+html.light #funfacts .funfact-card p,
+html.light #funfacts .funfact-card h3 {
+  color: #1f2937 !important;
+}
+
 @media (max-width: 768px) {
   .stat-flip {
     width: 46% !important;
@@ -614,6 +668,89 @@ html.light .rounded-4[style*="rgba(255,255,255,0.03)"] {
   border: 1px solid rgba(216, 180, 254, 0.25) !important;
 }
 
+/* ---------- Journey timeline ---------- */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%);
+  transform-origin: top;
+  border-radius: 4px;
+}
+
+.timeline-item {
+  min-height: 150px;
+  margin-bottom: 1.5rem;
+}
+
+.icon-box {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.timeline-card {
+  width: calc(50% - 20px);
+}
+
+.timeline-card--left {
+  margin-right: auto;
+}
+
+.timeline-card--right {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 26px;
+  }
+
+  .icon-box {
+    left: 28px;
+    top: 6px;
+    transform: translateX(-50%);
+  }
+
+  .timeline-card {
+    width: auto;
+    margin-left: 84px !important;
+    margin-right: 0 !important;
+  }
+
+  .timeline-item {
+    min-height: 0;
+  }
+}
+
+/* Journey light theme: dark text on light cards, purple accents */
+html.light #journey .timeline-card {
+  background: rgba(236, 231, 254, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+}
+
+html.light #journey .timeline-card p,
+html.light #journey .timeline-card h4 {
+  color: #1f2937 !important;
+}
+
+html.light #journey .timeline-card h5 {
+  color: #7c3aed !important;
+}
+
+html.light #journey .icon-box {
+  background: #ffffff !important;
+  color: #6d28d9 !important;
+}
+
+html.light #journey .timeline-line {
+  background: rgba(139, 92, 246, 0.6) !important;
+}
+
 /* Other translucent-white inner cards (fun facts, testimonials, blog, about) */
 html.light .responsive-card [style*="rgba(255,255,255,0.04)"],
 html.light .responsive-card [style*="rgba(255,255,255,0.05)"],
@@ -731,27 +868,32 @@ html.light #projects .tech-badge {
   color: #ffffff !important;
 }
 
-/* Social proof icons: default light, brand color on hover */
-html.light .social-proof-card .gh-icon,
-html.light .social-proof-card .li-icon,
-html.light .social-proof-card .wa-icon {
-  color: #ffffff !important;
-  fill: #ffffff !important;
+/* Social proof icons: brand colors on light theme, white default on dark */
+html.light .social-proof-card .gh-icon {
+  color: #181717 !important;
+  fill: #181717 !important;
 }
 
-html.light .social-proof-card .gh-icon:hover,
+html.light .social-proof-card .li-icon {
+  color: #0a66c2 !important;
+  fill: #0a66c2 !important;
+}
+
+html.light .social-proof-card .wa-icon {
+  color: #25d366 !important;
+  fill: #25d366 !important;
+}
+
 html.light .social-proof-card:hover .gh-icon {
   color: #181717 !important;
   fill: #181717 !important;
 }
 
-html.light .social-proof-card .li-icon:hover,
 html.light .social-proof-card:hover .li-icon {
   color: #0a66c2 !important;
   fill: #0a66c2 !important;
 }
 
-html.light .social-proof-card .wa-icon:hover,
 html.light .social-proof-card:hover .wa-icon {
   color: #25d366 !important;
   fill: #25d366 !important;
@@ -771,6 +913,29 @@ html.light .social-proof-card:hover .wa-icon {
 .social-proof-card:hover .wa-icon {
   color: #25d366 !important;
   fill: #25d366 !important;
+}
+
+/* Social proof card: lift + glow on hover */
+.social-proof-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.social-proof-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 34px rgba(48, 25, 52, 0.35);
+}
+
+html.light #socialproof .social-proof-card:hover {
+  box-shadow: 0 14px 34px rgba(124, 58, 237, 0.35);
+  border-color: rgba(139, 92, 246, 0.6) !important;
+}
+
+html.light #socialproof .social-proof-card p {
+  color: #1f2937 !important;
+}
+
+html.light #socialproof .social-proof-card a {
+  color: #7c3aed !important;
 }
 
 /* Section headings: white on light theme */

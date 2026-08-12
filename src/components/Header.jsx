@@ -42,8 +42,10 @@ export default function Header() {
   ];
 
   const moreLinks = [
+    { id: "achievements", label: "Achievements" },
     { id: "journey", label: "Journey" },
     { id: "testimonials", label: "Testimonials" },
+    { id: "socialproof", label: "Social Proof" },
     { id: "blog", label: "Blog" },
     { id: "funfacts", label: "Fun Facts" },
     { id: "contact", label: "Contact" },
