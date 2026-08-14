@@ -75,14 +75,34 @@ const getPlanetData = (isMobile) => ({
   }
 });
 
-// NASA Textures (optimized for mobile)
+// Planet textures (bundled locally to avoid NASA hotlink 403 errors)
+import earthTexture from '../assets/textures/earth.jpg';
+import marsTexture from '../assets/textures/mars.jpg';
+import jupiterTexture from '../assets/textures/jupiter.jpg';
+
 const textureLoader = new THREE.TextureLoader();
 const planetTextures = {
-  sun: 'https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001589/GSFC_20171208_Archive_e001589~medium.jpg',
-  earth: 'https://images-assets.nasa.gov/image/geophys_0998_0998/geophys_0998_0998~medium.jpg',
-  mars: 'https://images-assets.nasa.gov/image/PIA00407/PIA00407~medium.jpg',
-  jupiter: 'https://images-assets.nasa.gov/image/PIA07782/PIA07782~medium.jpg',
-  saturn: 'https://images-assets.nasa.gov/image/PIA02225/PIA02225~medium.jpg'
+  earth: earthTexture,
+  mars: marsTexture,
+  jupiter: jupiterTexture
+};
+
+// Procedural banded texture for Saturn (reliable, no external request)
+const createSaturnTexture = () => {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+  const bands = ['#e8d9a0', '#dcc48e', '#f2e6c0', '#c9ad7d', '#e6d6ac', '#b89a68', '#dcc9a0', '#c7a876', '#eadcc0', '#d1b98c'];
+  for (let y = 0; y < 256; y++) {
+    const idx = Math.floor((y / 256) * bands.length);
+    ctx.fillStyle = bands[Math.min(idx, bands.length - 1)];
+    ctx.fillRect(0, y, 512, 1);
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  return texture;
 };
 
 export default function SolarSystem() {
@@ -110,40 +130,49 @@ export default function SolarSystem() {
     const segments = isMobile ? 32 : 64;
     const geometry = new THREE.SphereGeometry(data.size, segments, segments);
     
+    let planet;
     let material;
-    if (!performanceMode && planetTextures[name]) {
-      try {
-        const texture = textureLoader.load(planetTextures[name]);
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        
-        material = new THREE.MeshStandardMaterial({
-          map: texture,
-          roughness: 0.8,
-          metalness: 0.2,
-          emissive: data.color,
-          emissiveIntensity: 0.1
-        });
-      } catch (e) {
-        // Fallback to colored material if texture fails
-        material = new THREE.MeshStandardMaterial({
-          color: data.color,
-          roughness: 0.7,
-          metalness: 0.3,
-          emissive: data.color,
-          emissiveIntensity: 0.2
-        });
-      }
+    
+    const coloredMaterial = new THREE.MeshStandardMaterial({
+      color: data.color,
+      roughness: 0.7,
+      metalness: 0.3,
+      emissive: data.color,
+      emissiveIntensity: 0.2
+    });
+    
+    if (!performanceMode && (planetTextures[name] || name === 'saturn')) {
+      const texture = name === 'saturn'
+        ? createSaturnTexture()
+        : textureLoader.load(planetTextures[name], undefined, undefined, () => {
+            // Texture failed to load -> fall back to colored material
+            if (planet && planet.material) {
+              planet.material.dispose();
+              planet.material = coloredMaterial;
+            }
+          });
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      
+      material = new THREE.MeshStandardMaterial({
+        map: texture,
+        roughness: 0.8,
+        metalness: 0.2,
+        emissive: data.color,
+        emissiveIntensity: 0.1
+      });
     } else {
       // Performance mode - simpler materials
-      material = new THREE.MeshBasicMaterial({
-        color: data.color,
-        transparent: true,
-        opacity: 0.9
-      });
+      material = isMobile
+        ? new THREE.MeshBasicMaterial({
+            color: data.color,
+            transparent: true,
+            opacity: 0.9
+          })
+        : coloredMaterial;
     }
     
-    const planet = new THREE.Mesh(geometry, material);
+    planet = new THREE.Mesh(geometry, material);
     planet.castShadow = !isMobile; // Disable shadows on mobile for performance
     planet.receiveShadow = !isMobile;
     
