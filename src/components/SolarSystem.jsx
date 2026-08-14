@@ -249,7 +249,7 @@ export default function SolarSystem() {
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -100;
+      z-index: 0;
       pointer-events: none;
       ${isMobile ? 'image-rendering: -webkit-optimize-contrast;' : ''}
     `;
@@ -581,7 +581,7 @@ export default function SolarSystem() {
         left: 0,
         width: '100vw',
         height: '100vh',
-        zIndex: -100,
+        zIndex: 0,
         pointerEvents: 'none',
         WebkitTapHighlightColor: 'transparent'
       }}

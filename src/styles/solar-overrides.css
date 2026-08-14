@@ -2,9 +2,9 @@
 
 /* Base styles */
 :root {
-  --solar-bg-z-index: -100;
+  --solar-bg-z-index: 0;
   --content-z-index: 1;
-  --overlay-z-index: -99;
+  --overlay-z-index: 0;
 }
 
 /* Solar system container */

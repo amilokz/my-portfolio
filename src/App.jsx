@@ -216,7 +216,7 @@ const responsiveStyles = `
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    z-index: -100 !important;
+    z-index: 0 !important;
     pointer-events: none !important;
   }
 
@@ -267,7 +267,7 @@ const responsiveStyles = `
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -99;
+    z-index: 0;
     pointer-events: none;
   }
 
