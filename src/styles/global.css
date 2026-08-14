@@ -631,6 +631,19 @@ html.light #funfacts .funfact-card h3 {
 }
 
 /* ===========================
+   GRADIENT TEXT FALLBACK
+=========================== */
+/* If background-clip: text is not supported, fall back to solid text
+   instead of an invisible full-row gradient block. */
+@supports not (background-clip: text) {
+  .hero-gradient-text {
+    background: transparent !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+  }
+}
+
+/* ===========================
    LIGHT THEME (light purple glass)
 =========================== */
 /* Light theme: the galaxy stays deep purple, and every surface becomes a

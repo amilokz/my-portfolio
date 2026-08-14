@@ -145,41 +145,45 @@ export default function Hero() {
         </motion.div>
 
         {/* Main Heading */}
+        {/* Note: the gradient is applied to plain inner spans (not the motion
+            element). background-clip:text renders a full-width gradient block
+            instead of gradient letters when the element (or a descendant) has a
+            transform, e.g. framer-motion's translateY. */}
         <motion.h1
           className="fw-bold mb-3 mb-md-4"
           variants={itemVariants}
           style={{
             fontSize: "clamp(2.5rem, 8vw, 4rem)",
-            background: darkMode
-              ? "linear-gradient(135deg, #ffffff 0%, #00cfff 50%, #8b5cf6 100%)"
-              : "linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
             lineHeight: "1.1"
           }}
         >
-          Komil Hassan
-          <motion.span
-            className="d-block mt-2"
+          <span
+            className="d-block hero-gradient-text"
             style={{
-              fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
               background: darkMode
-                ? "linear-gradient(135deg, #00cfff 0%, #8b5cf6 100%)"
-                : "linear-gradient(135deg, #c4b5fd 0%, #f5f3ff 100%)",
+                ? "linear-gradient(135deg, #ffffff 0%, #00cfff 50%, #8b5cf6 100%)"
+                : "linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text"
             }}
-            animate={{ y: [0, -10, 0] }}
-            transition={{
-              repeat: Infinity,
-              duration: 4,
-              ease: "easeInOut"
-            }}
           >
-            Building the Future with Code
-          </motion.span>
+            Komil Hassan
+            <span
+              className="d-block mt-2 hero-gradient-text"
+              style={{
+                fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
+                background: darkMode
+                  ? "linear-gradient(135deg, #00cfff 0%, #8b5cf6 100%)"
+                  : "linear-gradient(135deg, #c4b5fd 0%, #f5f3ff 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text"
+              }}
+            >
+              Building the Future with Code
+            </span>
+          </span>
         </motion.h1>
 
         {/* Typewriter Effect */}
