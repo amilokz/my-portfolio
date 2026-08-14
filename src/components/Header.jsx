@@ -7,6 +7,7 @@ export default function Header() {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   // Add shadow on scroll
   useEffect(() => {
@@ -55,13 +56,19 @@ export default function Header() {
     <Navbar
       expand="lg"
       fixed="top"
+      expanded={expanded}
+      onToggle={(nextExpanded) => setExpanded(nextExpanded)}
       className={`py-3 transition ${
         scrolled ? "shadow-sm bg-white dark:bg-black" : "bg-white dark:bg-black"
       }`}
     >
       <Container>
         {/* Brand */}
-        <Navbar.Brand href="#hero" className="fw-bold fs-3 text-primary">
+        <Navbar.Brand
+          href="#hero"
+          onClick={() => setExpanded(false)}
+          className="fw-bold fs-3 text-primary"
+        >
           Komil <span className="text-dark dark:text-white">Hassan</span>
         </Navbar.Brand>
 
@@ -77,6 +84,7 @@ export default function Header() {
               <Nav.Link
                 key={link.id}
                 href={`#${link.id}`}
+                onClick={() => setExpanded(false)}
                 className={`fw-semibold ${
                   activeSection === link.id ? "text-primary" : ""
                 }`}
@@ -95,6 +103,7 @@ export default function Header() {
                 <NavDropdown.Item
                   key={link.id}
                   href={`#${link.id}`}
+                  onClick={() => setExpanded(false)}
                   className={activeSection === link.id ? "text-primary fw-semibold" : ""}
                 >
                   {link.label}
@@ -103,7 +112,7 @@ export default function Header() {
             </NavDropdown>
 
             {/* Hire Me Button */}
-            <Nav.Link href="#contact">
+            <Nav.Link href="#contact" onClick={() => setExpanded(false)}>
               <Button size="sm" className="btn-primary fw-bold">
                 Hire Me
               </Button>
@@ -117,7 +126,10 @@ export default function Header() {
                 aria-checked={!darkMode}
                 aria-label="Toggle light/dark theme"
                 title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                onClick={toggleTheme}
+                onClick={() => {
+                  toggleTheme();
+                  setExpanded(false);
+                }}
                 className="theme-switch"
               >
                 <span className="theme-switch__track">

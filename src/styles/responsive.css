@@ -1,0 +1,425 @@
+/* ============================================================
+   RESPONSIVE STYLES — every component, every device, every screen
+   Breakpoints:
+     xs  < 576px  (phones)
+     sm  576-767  (large phones / small landscape)
+     md  768-991  (tablets / small laptops)
+     lg  992-1199 (laptops)
+     xl  >=1200   (desktop / large monitors)
+   Extras: very small phones (<400px), short/landscape screens,
+           touch devices, reduced motion, hi-dpi.
+============================================================ */
+
+/* ---------- Global fluid helpers ---------- */
+:root {
+  --nav-height: 4.5rem;
+  --nav-height-mobile: 3.75rem;
+}
+
+html {
+  scroll-padding-top: var(--nav-height);
+}
+
+/* Smooth anchor scrolling lands below the fixed navbar */
+section[id] {
+  scroll-margin-top: calc(var(--nav-height) - 1rem);
+}
+
+/* Keep wide content centered & breathable on huge monitors */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* ---------- Header / Navbar ---------- */
+/* Mobile + tablet collapse panel: glassy, scrollable, full-width items */
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse {
+    max-height: calc(100vh - var(--nav-height-mobile) - 1rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1.25rem 1rem;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
+  }
+
+  html.dark .navbar .navbar-collapse {
+    background: rgba(15, 23, 42, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  }
+
+  html.light .navbar .navbar-collapse {
+    background: rgba(139, 92, 246, 0.28);
+    border: 1px solid rgba(216, 180, 254, 0.35);
+  }
+
+  .navbar .navbar-collapse .navbar-nav {
+    align-items: stretch !important;
+    gap: 0 !important;
+  }
+
+  .navbar .navbar-collapse .nav-link {
+    padding: 0.75rem 0.5rem !important;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+  }
+
+  html.dark .navbar .navbar-collapse .nav-link {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .navbar .navbar-collapse .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .navbar .navbar-collapse .nav-item {
+    width: 100%;
+  }
+
+  /* Dropdown becomes an inline sub-list on mobile */
+  .navbar .navbar-collapse .dropdown-menu {
+    position: static !important;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 0 0.75rem;
+  }
+
+  html.dark .navbar .navbar-collapse .dropdown-menu {
+    background: transparent;
+  }
+
+  .navbar .navbar-collapse .dropdown-menu .dropdown-item {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+
+  /* Hire Me button + social icons stay inline & tappable */
+  .navbar .navbar-collapse .btn {
+    min-height: 44px;
+  }
+
+  .navbar .navbar-collapse .theme-switch {
+    margin: 0.5rem 0;
+  }
+
+  .navbar .navbar-collapse .nav-link.d-flex {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar .navbar-collapse {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .navbar-brand {
+    font-size: 1.35rem !important;
+  }
+}
+
+/* ---------- Hero ---------- */
+@media (max-width: 575.98px) {
+  .hero-cta-btn {
+    width: 100%;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .hero-cta-btn {
+    min-width: 0 !important;
+    font-size: 0.9rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .hero-badge span {
+    font-size: 0.72rem !important;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .hero-badge {
+    padding: 0.5rem 1rem !important;
+  }
+
+  .hero-badge span {
+    font-size: 0.75rem !important;
+  }
+
+  /* Keep the floating tech chips compact so they wrap nicely */
+  #hero .d-flex.flex-wrap.gap-2 .px-3 {
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
+  }
+}
+
+/* Short landscape phones & small-height windows */
+@media (max-height: 700px) and (orientation: landscape) {
+  #hero,
+  .hero-with-solar-background {
+    min-height: auto !important;
+    padding-top: 5.5rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .scroll-indicator {
+    display: none !important;
+  }
+}
+
+/* ---------- About ---------- */
+.about-tabs {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 575.98px) {
+  .about-tab {
+    padding: 10px 14px !important;
+    font-size: 0.9rem !important;
+    flex: 1 1 auto;
+  }
+
+  .about-actions {
+    flex-direction: column !important;
+  }
+
+  .about-actions a {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  /* Floating "Developer" badge shouldn't overflow the image on phones */
+  #about .position-absolute[style*="right: -10px"] {
+    right: -4px !important;
+    padding: 6px 12px !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ---------- Skills ---------- */
+@media (max-width: 575.98px) {
+  #skills .card {
+    padding: 1.25rem !important;
+  }
+}
+
+/* ---------- Projects ---------- */
+#projects .card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+@media (max-width: 575.98px) {
+  #projects .card-img-top {
+    height: 175px;
+  }
+
+  #projects .card-body {
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* Bootstrap modal on phones: keep it inside the viewport */
+@media (max-width: 575.98px) {
+  .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100vw - 1rem);
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .modal-footer {
+    flex-wrap: wrap;
+  }
+
+  .modal-footer .btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* ---------- Stats & Achievements flip cards ---------- */
+/* The existing global rules handle 768/480 widths; refine further here. */
+@media (min-width: 481px) and (max-width: 767.98px) {
+  .stat-flip {
+    width: 46% !important;
+    height: 170px !important;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .stat-flip {
+    width: 100% !important;
+    max-width: 280px !important;
+    height: 170px !important;
+  }
+
+  #stats .stat-flip-front div[style*="34px"],
+  #stats .stat-flip-back p[style*="0.85rem"] {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Touch devices: tap to flip (no hover available) */
+@media (hover: none) and (pointer: coarse) {
+  .stat-flip:active .stat-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+/* ---------- Journey timeline ---------- */
+@media (max-width: 767.98px) {
+  .timeline-card {
+    margin-left: 84px !important;
+  }
+
+  .icon-box {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .timeline-card {
+    margin-left: 68px !important;
+    padding: 1rem !important;
+  }
+
+  .icon-box {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .timeline-line {
+    left: 22px;
+  }
+
+  .icon-box {
+    left: 24px;
+  }
+}
+
+/* ---------- Testimonials & Blog ---------- */
+@media (max-width: 575.98px) {
+  #testimonials .p-4,
+  #blog .blog-card {
+    padding: 1.25rem !important;
+  }
+}
+
+/* ---------- Social Proof ---------- */
+@media (max-width: 575.98px) {
+  .social-proof-card {
+    flex: 1 1 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+  }
+}
+
+/* ---------- Fun Facts ---------- */
+@media (max-width: 575.98px) {
+  .funfact-card {
+    width: 45% !important;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .funfact-card {
+    width: 100% !important;
+    max-width: 240px;
+  }
+}
+
+/* ---------- Contact ---------- */
+@media (max-width: 575.98px) {
+  #contact form {
+    padding: 1.25rem 1rem !important;
+  }
+
+  #contact .form-control-lg {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Footer ---------- */
+@media (max-width: 575.98px) {
+  footer .row {
+    row-gap: 1.5rem;
+  }
+
+  footer .col-md-4 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  footer .d-flex.gap-3 {
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------- SocialLinks ---------- */
+@media (max-width: 399.98px) {
+  .d-flex.justify-content-center.gap-4 .rounded-circle {
+    width: 52px !important;
+    height: 52px !important;
+  }
+}
+
+/* ---------- Case study pages ---------- */
+.case-study-page {
+  padding-top: 110px !important;
+}
+
+@media (max-width: 767.98px) {
+  .case-study-page {
+    padding-top: 95px !important;
+  }
+}
+
+/* ---------- Responsive cards: tighten spacing on small screens ---------- */
+@media (max-width: 575.98px) {
+  .responsive-card {
+    padding: 1.25rem !important;
+  }
+}
+
+/* ---------- Touch targets & reduced motion ---------- */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  a,
+  .nav-link,
+  .dropdown-item,
+  .btn {
+    touch-action: manipulation;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

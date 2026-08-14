@@ -124,7 +124,7 @@ export default function Hero() {
       >
         {/* Animated Badge */}
         <motion.div
-          className="d-inline-flex align-items-center px-4 py-2 mb-4 mb-md-5"
+          className="d-inline-flex align-items-center px-4 py-2 mb-4 mb-md-5 hero-badge"
           variants={itemVariants}
           style={{
             background: "rgba(15, 23, 42, 0.6)",
@@ -156,10 +156,7 @@ export default function Hero() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            lineHeight: "1.1",
-            textShadow: darkMode
-              ? "0 0 60px rgba(0, 204, 255, 0.3)"
-              : "0 0 60px rgba(167, 139, 250, 0.55)"
+            lineHeight: "1.1"
           }}
         >
           Komil Hassan
@@ -264,7 +261,7 @@ export default function Hero() {
           {/* Portfolio Button */}
           <motion.a
             href="#projects"
-            className="d-flex align-items-center justify-content-center px-4 px-md-5 py-3"
+            className="d-flex align-items-center justify-content-center px-4 px-md-5 py-3 hero-cta-btn"
             style={{
               background: "rgba(0, 204, 255, 0.15)",
               color: "#ffffff",
@@ -293,7 +290,7 @@ export default function Hero() {
           <motion.a
             href="/my-portfolio/jobcv.pdf"
             download="Komil_Hassan_CV.pdf"
-            className="d-flex align-items-center justify-content-center px-4 px-md-5 py-3"
+            className="d-flex align-items-center justify-content-center px-4 px-md-5 py-3 hero-cta-btn"
             style={{
               background: "linear-gradient(135deg, #00cfff, #8b5cf6)",
               color: "#ffffff",

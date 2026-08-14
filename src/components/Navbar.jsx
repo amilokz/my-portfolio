@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

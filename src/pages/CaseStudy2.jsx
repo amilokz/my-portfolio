@@ -5,7 +5,7 @@ export default function CaseStudy2() {
   const navigate = useNavigate();
 
   return (
-    <div className="container py-5 text-white">
+    <div className="container py-5 text-white case-study-page">
       <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>
         ← Back
       </button>

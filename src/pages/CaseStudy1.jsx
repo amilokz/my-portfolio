@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function CaseStudy1() {
   const navigate = useNavigate();
   return (
-    <div className="container py-5 text-white">
+    <div className="container py-5 text-white case-study-page">
       <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>← Back</button>
       <h1 className="mb-3">Company Website – Case Study</h1>
       <p>

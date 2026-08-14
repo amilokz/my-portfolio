@@ -267,11 +267,12 @@ export default function About() {
                 <div className="col-md-7">
                   {/* Content Tabs */}
                   <div className="mb-4">
-                    <div className="d-flex border-bottom" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+                    <div className="d-flex border-bottom about-tabs" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
                       {["about", "experience", "approach"].map((tab) => (
                         <button
                           key={tab}
                           onClick={() => setActiveTab(tab)}
+                          className="about-tab"
                           style={{
                             padding: "12px 24px",
                             background: "transparent",
@@ -433,7 +434,7 @@ export default function About() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                   >
-                    <div className="d-flex gap-3">
+                    <div className="d-flex gap-3 about-actions">
                    <motion.a
     href="/my-portfolio/jobcv.pdf"
   download="Komil_Hassan_CV.pdf"

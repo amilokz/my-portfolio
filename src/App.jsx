@@ -29,6 +29,7 @@ import CaseStudy3 from "./pages/CaseStudy3";
 // Import responsive CSS
 import './styles/global.css';
 import './styles/solar-overrides.css';
+import './styles/responsive.css';
 
 // Responsive HomePage Component
 function HomePage() {
