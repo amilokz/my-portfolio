@@ -158,6 +158,7 @@ export default function Hero() {
           }}
         >
           <span
+            key={darkMode ? "dark" : "light"}
             className="d-block hero-gradient-text"
             style={{
               background: darkMode
